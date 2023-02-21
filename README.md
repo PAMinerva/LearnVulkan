@@ -12,7 +12,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
 
 <br>
 
-## Additional Samples
+## Samples
 
 <table>
  <tr>
