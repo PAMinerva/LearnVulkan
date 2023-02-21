@@ -1,0 +1,6 @@
+*.exe
+*.ilk
+*.pdb
+*.out
+*.spv
+!bin/*
