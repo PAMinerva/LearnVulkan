@@ -79,10 +79,10 @@ protected:
 
     // Stores physical device properties (for e.g. checking device limits)
     VkPhysicalDeviceProperties m_deviceProperties;
-	// Stores all available memory (type) properties for the physical device
-	VkPhysicalDeviceMemoryProperties m_deviceMemoryProperties;
+    // Stores all available memory (type) properties for the physical device
+    VkPhysicalDeviceMemoryProperties m_deviceMemoryProperties;
     // Stores the features available on the selected physical device (for e.g. checking if a feature is available)
-	VkPhysicalDeviceFeatures m_deviceFeatures;
+    VkPhysicalDeviceFeatures m_deviceFeatures;
 
     // Frame count
     StepTimer m_timer;
