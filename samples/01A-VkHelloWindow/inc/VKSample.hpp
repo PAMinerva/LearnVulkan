@@ -73,7 +73,7 @@ protected:
     // Sentinel variable to check sample initialization completion.
     bool m_initialized;
 
-    // Pipeline objects.
+    // Vulkan and objects.
     VulkanCommonParameters  m_vulkanParams;
     SampleParameters m_sampleParams;
 
