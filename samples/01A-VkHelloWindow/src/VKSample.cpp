@@ -161,7 +161,10 @@ void VKSample::CreateSurface()
 
 void VKSample::CreateDevice(VkQueueFlags requestedQueueTypes)
 {
-    // Physical device
+    //
+    // Select physical device
+    //
+
     unsigned int gpuCount = 0;
     // Get number of available physical devices
     vkEnumeratePhysicalDevices(m_vulkanParams.Instance, &gpuCount, nullptr);
