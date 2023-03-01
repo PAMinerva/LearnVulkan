@@ -115,14 +115,14 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 #elif defined(VK_USE_PLATFORM_XLIB_KHR)
 void HandleX11Event(XEvent& event)
 {
-        VKSample* pSample = GetVKSample();
+        VKSample* pSample = VKApplication::GetVKSample();
 
     switch (event.type)
     {
         case ClientMessage:
-            if ((Atom)event.xclient.data.l[0] == winParams.xlib_wm_delete_window) 
+            if ((Atom)event.xclient.data.l[0] == VKApplication::winParams.xlib_wm_delete_window) 
             {
-                winParams.quit = true;
+                VKApplication::winParams.quit = true;
             }
             break;
 
@@ -131,7 +131,7 @@ void HandleX11Event(XEvent& event)
             switch (event.xkey.keycode)
             {
                 case 0x9:  // Escape
-                    winParams.quit = true;
+                    VKApplication::winParams.quit = true;
                     break;
                 /* case 0x71:  // left arrow key
                     spin_angle -= spin_increment;
@@ -160,7 +160,7 @@ void HandleX11Event(XEvent& event)
         break;
 
         case DestroyNotify:
-            winParams.quit = true;
+            VKApplication::winParams.quit = true;
             break;
 
         case ConfigureNotify:
