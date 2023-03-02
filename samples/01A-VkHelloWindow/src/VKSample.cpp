@@ -476,7 +476,7 @@ void VKSample::CreateSwapchain(uint32_t* width, uint32_t* height, bool vsync)
     }
 }
 
-// Render pass setup.
+// Create a Render Pass object.
 void VKSample::CreateRenderPass()
 {
     // This example will use a single render pass with one subpass
