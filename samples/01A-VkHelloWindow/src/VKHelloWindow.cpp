@@ -21,9 +21,9 @@ void VKHelloWindow::InitVulkan()
     CreateDevice(VK_QUEUE_GRAPHICS_BIT);
     GetDeviceQueue(m_vulkanParams.Device, m_vulkanParams.GraphicsQueue.FamilyIndex, m_vulkanParams.GraphicsQueue.Handle);
     CreateSwapchain(&m_width, &m_height, VKApplication::settings.vsync);
-    SetupRenderPass();
-    SetupFrameBuffer();
-    CreateCommandBuffers();
+    CreateRenderPass();
+    CreateFrameBuffers();
+    AllocateCommandBuffers();
     CreateSynchronizationObjects();
 }
 
@@ -95,6 +95,8 @@ void VKHelloWindow::OnDestroy()
                          m_sampleParams.GraphicsCommandPool,
                           static_cast<uint32_t>(m_sampleParams.GraphicsCommandBuffers.size()), 
                           m_sampleParams.GraphicsCommandBuffers.data());
+
+     vkDestroyRenderPass(m_vulkanParams.Device, m_sampleParams.RenderPass, NULL);
 
     // Destroy semaphores
     vkDestroySemaphore(m_vulkanParams.Device, m_sampleParams.ImageAvailableSemaphore, NULL);

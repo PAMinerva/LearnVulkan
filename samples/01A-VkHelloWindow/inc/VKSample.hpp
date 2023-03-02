@@ -57,13 +57,12 @@ public:
 protected:
     virtual void CreateInstance();
     virtual void CreateSurface();
-    virtual void CreateCommandBuffers();
     virtual void CreateSynchronizationObjects();
     virtual void CreateDevice(VkQueueFlags requestedQueueTypes);
     virtual void CreateSwapchain(uint32_t* width, uint32_t* height, bool vsync);
-
-    virtual void SetupRenderPass();
-    virtual void SetupFrameBuffer();
+    virtual void CreateRenderPass();
+    virtual void CreateFrameBuffers();
+    virtual void AllocateCommandBuffers();
 
     // Viewport dimensions.
     uint32_t m_width;

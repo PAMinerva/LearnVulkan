@@ -477,7 +477,7 @@ void VKSample::CreateSwapchain(uint32_t* width, uint32_t* height, bool vsync)
 }
 
 // Render pass setup.
-void VKSample::SetupRenderPass()
+void VKSample::CreateRenderPass()
 {
     // This example will use a single render pass with one subpass
 
@@ -537,7 +537,7 @@ void VKSample::SetupRenderPass()
     VK_CHECK_RESULT(vkCreateRenderPass(m_vulkanParams.Device, &renderPassInfo, nullptr, &m_sampleParams.RenderPass));
 }
 
-void VKSample::SetupFrameBuffer()
+void VKSample::CreateFrameBuffers()
 {
     VkImageView attachments[1] = {};
 
@@ -560,7 +560,7 @@ void VKSample::SetupFrameBuffer()
     }
 }
 
-void VKSample::CreateCommandBuffers()
+void VKSample::AllocateCommandBuffers()
 {
     VkCommandPoolCreateInfo cmdPoolInfo = {};
     cmdPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
@@ -614,13 +614,13 @@ void VKSample::WindowResize(uint32_t width, uint32_t height)
     for (uint32_t i = 0; i < m_sampleParams.Framebuffers.size(); i++) {
         vkDestroyFramebuffer(m_vulkanParams.Device, m_sampleParams.Framebuffers[i], nullptr);
     }
-    SetupFrameBuffer();
+    CreateFrameBuffers();
 
 
     // Command buffers need to be recreated as they may store
     // references to the recreated frame buffer
     vkFreeCommandBuffers(m_vulkanParams.Device, m_sampleParams.GraphicsCommandPool, static_cast<uint32_t>(m_sampleParams.GraphicsCommandBuffers.size()), m_sampleParams.GraphicsCommandBuffers.data());
-    CreateCommandBuffers();
+    AllocateCommandBuffers();
 
     vkDeviceWaitIdle(m_vulkanParams.Device);
 
