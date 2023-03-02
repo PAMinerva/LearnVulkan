@@ -96,7 +96,7 @@ void VKHelloWindow::OnDestroy()
                           static_cast<uint32_t>(m_sampleParams.GraphicsCommandBuffers.size()), 
                           m_sampleParams.GraphicsCommandBuffers.data());
 
-     vkDestroyRenderPass(m_vulkanParams.Device, m_sampleParams.RenderPass, NULL);
+    vkDestroyRenderPass(m_vulkanParams.Device, m_sampleParams.RenderPass, NULL);
 
     // Destroy semaphores
     vkDestroySemaphore(m_vulkanParams.Device, m_sampleParams.ImageAvailableSemaphore, NULL);
