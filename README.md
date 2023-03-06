@@ -1,6 +1,6 @@
 # Learn Vulkan from code samples
 ## Description
-This repository hosts the code of additional samples for the tutorial series you can find in the wiki, or at the following link:<br />
+This repository hosts the code of the samples for the tutorial series you can find in the wiki, or at the following link:<br />
 
 [Learn Vulkan from code samples](https://paminerva.github.io/docs/LearnVulkan/LearnVulkan)
 
