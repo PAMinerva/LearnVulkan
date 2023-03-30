@@ -26,7 +26,7 @@ private:
     void CreatePipelineLayout();
     void CreatePipelineObjects();
     
-    // Vertex layout used in this example
+    // Vertex layout used in this sample
     struct Vertex {
     	float position[3];
     	float color[4];
