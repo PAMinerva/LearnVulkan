@@ -465,9 +465,9 @@ void VKHelloTriangle::PopulateCommandBuffer(uint32_t currentBufferIndex, uint32_
     // Draw triangle
     vkCmdDraw(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], 3, 1, 0, 0);
     
-     // Ending the render pass will add an implicit barrier, transitioning the frame buffer color attachment to
-     // VK_IMAGE_LAYOUT_PRESENT_SRC_KHR for presenting it to the windowing system
-     vkCmdEndRenderPass(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex]);
+    // Ending the render pass will add an implicit barrier, transitioning the frame buffer color attachment to
+    // VK_IMAGE_LAYOUT_PRESENT_SRC_KHR for presenting it to the windowing system
+    vkCmdEndRenderPass(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex]);
     
      VK_CHECK_RESULT(vkEndCommandBuffer(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex]));
 }
