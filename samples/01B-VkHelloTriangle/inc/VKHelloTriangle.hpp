@@ -22,9 +22,9 @@ private:
     void SubmitCommandBuffer(uint32_t currentBufferIndex);
     void PresentImage(uint32_t imageIndex);
     
-    void CreateVertexBuffer();
-    void CreatePipelineLayout();
-    void CreatePipelineObjects();
+    void CreateVertexBuffer();          // Create a vertex buffer
+    void CreatePipelineLayout();        // Create a pipeline layout
+    void CreatePipelineObjects();       // Create a pipeline object
     
     // Vertex layout used in this sample
     struct Vertex {

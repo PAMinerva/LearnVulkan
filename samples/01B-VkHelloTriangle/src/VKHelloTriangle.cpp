@@ -157,7 +157,7 @@ void VKHelloTriangle::CreateVertexBuffer()
     // This is not recommended as it can often result in lower rendering performance
     //
     
-    //Used to request an allocation of a specific size from a certain memory type.
+    // Used to request an allocation of a specific size from a certain memory type.
     VkMemoryAllocateInfo memAlloc = {};
     memAlloc.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     VkMemoryRequirements memReqs;
