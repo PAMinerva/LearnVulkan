@@ -143,12 +143,20 @@ void VKHelloTriangle::CreateVertexBuffer()
     // While it's fine for an example application to request small individual memory allocations, that is not
     // what should be done a real-world application, where you should allocate large chunks of memory at once instead.
     
-    // Setup vertices in the Z = 0 plane, and in anticlockwise order
+    // Setup vertices in the Z = 0 plane, and in counterclockwise order
+    //
+    //       Y
+    //      |
+    //      v0
+    //     /|\
+    //    / |_\_________ X
+    //   /     \
+    //  v1 ---- v2
     std::vector<Vertex> vertexBuffer =
     {
-        { { 0.0f, 0.25f * m_aspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
-    	{ { -0.25f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
-        { { 0.25f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } }
+        { { 0.0f, 0.25f * m_aspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },     // v0
+    	{ { -0.25f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },  // v1
+        { { 0.25f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } }    // v2
     };
     uint32_t vertexBufferSize = static_cast<uint32_t>(vertexBuffer.size()) * sizeof(Vertex);
 
