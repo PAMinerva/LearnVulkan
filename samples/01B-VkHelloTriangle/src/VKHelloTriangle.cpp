@@ -408,7 +408,7 @@ void VKHelloTriangle::CreatePipelineObjects()
     VK_CHECK_RESULT(vkCreateGraphicsPipelines(m_vulkanParams.Device, VK_NULL_HANDLE, 1, &pipelineCreateInfo, nullptr, &m_sampleParams.GraphicsPipeline));
     
     // SPIR-V shader modules are no longer needed once the graphics pipeline has been created
-    // since the SPIR-V SPIR-V binary blob is compiled during pipeline creation.
+    // since the SPIR-V modules are compiled during pipeline creation.
     vkDestroyShaderModule(m_vulkanParams.Device, shaderStages[0].module, nullptr);
     vkDestroyShaderModule(m_vulkanParams.Device, shaderStages[1].module, nullptr);
 }
