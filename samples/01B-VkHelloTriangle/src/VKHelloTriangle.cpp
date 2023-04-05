@@ -299,8 +299,8 @@ void VKHelloTriangle::CreatePipelineObjects()
     colorBlendState.attachmentCount = 1;
     colorBlendState.pAttachments = blendAttachmentState;
 
-    // Depth and stencil state containing depth and stencil compare and write 
-    // operations (more on this in a later tutorial).
+    // Depth and stencil state containing depth and stencil information (compare and write 
+    // operations; more on this in a later tutorial).
     // This sample won't make use of depth and stencil tests, and we could pass a 
     // nullptr to the graphics pipeline. However, we can also explicitly define a 
     // state indicating that the depth and stencil tests are disabled.
