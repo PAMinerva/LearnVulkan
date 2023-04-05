@@ -223,18 +223,7 @@ void VKHelloTriangle::CreatePipelineLayout()
 void VKHelloTriangle::CreatePipelineObjects()
 {
     //
-    // Create the graphics pipeline used in this sample
-    //
-    
-    VkGraphicsPipelineCreateInfo pipelineCreateInfo = {};
-    pipelineCreateInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-    // The pipeline layout used for this pipeline (can be shared among multiple pipelines using the same layout)
-    pipelineCreateInfo.layout = m_sampleParams.PipelineLayout;
-    // Render pass object defining what render pass instances the pipeline will be compatible with
-    pipelineCreateInfo.renderPass = m_sampleParams.RenderPass;
-    
-    //
-    // Construct the different states making up the pipeline
+    // Construct the different states making up the only graphics pipeline needed by this sample
     //
 
     //
@@ -293,9 +282,6 @@ void VKHelloTriangle::CreatePipelineObjects()
     rasterizationState.polygonMode = VK_POLYGON_MODE_FILL;
     rasterizationState.cullMode = VK_CULL_MODE_BACK_BIT;
     rasterizationState.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
-    rasterizationState.depthClampEnable = VK_FALSE;
-    rasterizationState.rasterizerDiscardEnable = VK_FALSE;
-    rasterizationState.depthBiasEnable = VK_FALSE;
     rasterizationState.lineWidth = 1.0f;
     
     //
@@ -389,6 +375,17 @@ void VKHelloTriangle::CreatePipelineObjects()
     // Main entry point for the shader
     shaderStages[1].pName = "main";
     assert(shaderStages[1].module != VK_NULL_HANDLE);
+
+    //
+    // Create the graphics pipeline used in this sample
+    //
+    
+    VkGraphicsPipelineCreateInfo pipelineCreateInfo = {};
+    pipelineCreateInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
+    // The pipeline layout used for this pipeline (can be shared among multiple pipelines using the same layout)
+    pipelineCreateInfo.layout = m_sampleParams.PipelineLayout;
+    // Render pass object defining what render pass instances the pipeline will be compatible with
+    pipelineCreateInfo.renderPass = m_sampleParams.RenderPass;
     
     // Set pipeline shader stage info
     pipelineCreateInfo.stageCount = static_cast<uint32_t>(shaderStages.size());
