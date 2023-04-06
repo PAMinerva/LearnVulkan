@@ -459,7 +459,7 @@ void VKHelloTriangle::PopulateCommandBuffer(uint32_t currentBufferIndex, uint32_
     scissor.offset.y = 0;
     vkCmdSetScissor(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], 0, 1, &scissor);
 
-    // Bind the graphics pipeline
+    // Bind the graphics pipeline.
     // The pipeline object contains all states of the graphics pipeline, 
     // binding it will set all the states specified at pipeline creation time
     vkCmdBindPipeline(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_sampleParams.GraphicsPipeline);
