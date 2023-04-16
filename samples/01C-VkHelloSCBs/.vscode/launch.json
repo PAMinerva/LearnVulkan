@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": 
+  [
+    // WIN config (Comment the block below to debug on Linux)
+    {
+      "name": "Win32 Debug",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",    
+      "args": [],
+      "stopAtEntry": false,
+      "environment": [],
+      "console": "internalConsole",
+      "program": "${workspaceFolder}/${workspaceFolderBasename}.exe",
+      "symbolSearchPath": "${workspaceFolder}/${workspaceFolderBasename}.pdb",
+      "preLaunchTask": "My Build Task"
+    }
+
+    // LINUX config (Uncomment the block below to debug on Linux)
+/*     {
+      "name": "Linux Debug",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/${workspaceFolderBasename}.out",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "My Build Task"
+    } */
+  ]
+}
