@@ -33,7 +33,7 @@ cd ..\..\bin
 glslangValidator -V ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.vert -o ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.vert.spv
 glslangValidator -V ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.frag -o ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.frag.spv
 
-cd ..\samples\01C-VkHelloSecondaryCommandBuffers
+cd ..\samples\01C-VkHelloSCBs
 echo Building project...
 
 cl src/*.cpp /MDd /EHsc /JMC /ZI %includes% %defines% %links%
