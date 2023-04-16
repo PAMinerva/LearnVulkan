@@ -53,7 +53,7 @@ void VKHelloSCB::AllocateSCBs()
 
 void VKHelloSCB::PopulateSCBs()
 {
-    // SCBs are used in the context of a render pass ...
+    // SCBs are used in the context of a render pass instance ...
     VkCommandBufferBeginInfo cmdBufInfo = {};
     cmdBufInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
     cmdBufInfo.pNext = nullptr;
