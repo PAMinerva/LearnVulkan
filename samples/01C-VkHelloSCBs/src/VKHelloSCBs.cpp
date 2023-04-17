@@ -518,7 +518,8 @@ void VKHelloSCB::PopulateCommandBuffer(uint32_t currentBufferIndex, uint32_t cur
 
     VK_CHECK_RESULT(vkBeginCommandBuffer(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], &cmdBufInfo));
 
-    // Begin the render pass instance.
+    // Begin a render pass instance specifying that the contents are recorded in secondary command buffers.
+    // vkCmdExecuteCommands is the only valid command on the primary command buffer.
     // This will clear the color attachment.
     vkCmdBeginRenderPass(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], &renderPassBeginInfo, VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS);
 
