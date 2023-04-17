@@ -53,14 +53,14 @@ void VKHelloSCB::AllocateSCBs()
 
 void VKHelloSCB::PopulateSCBs()
 {
-    // SCBs are used in the context of a render pass instance ...
+    // SCBs are used in the context of a render pass instance.
     VkCommandBufferBeginInfo cmdBufInfo = {};
     cmdBufInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
     cmdBufInfo.pNext = nullptr;
     cmdBufInfo.flags = VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT;
 
-    // ... and inherit some states from the primary CBs that will execute them.
-    // Defining these states up front may result in better performance at command buffer execution time.
+    // Set the render pass object defining what render pass instances the SCBs will be compatible with.
+    // Specifying the exact framebuffer that the SCBs will be executed with may result in better performance at command buffer execution time.
     VkCommandBufferInheritanceInfo inheritanceInfo = {};
     inheritanceInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO;
     inheritanceInfo.renderPass = m_sampleParams.RenderPass;
