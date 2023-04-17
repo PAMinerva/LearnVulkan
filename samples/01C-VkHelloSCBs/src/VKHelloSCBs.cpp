@@ -53,7 +53,7 @@ void VKHelloSCB::AllocateSCBs()
 
 void VKHelloSCB::PopulateSCBs()
 {
-    // Secondary CBs will be executed by primary CBs inside a render pass instance.
+    // Secondary CBs will be executed by primary CBs inside a specific subpass of a render pass instance.
     VkCommandBufferBeginInfo cmdBufInfo = {};
     cmdBufInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
     cmdBufInfo.pNext = nullptr;
