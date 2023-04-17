@@ -24,7 +24,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <td><img src="images/VKHelloTriangle.png"></td>
  </tr>
    <tr>
-  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01C-VkHelloSCBs">01.C - Hello SCBs</a></td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01C-VkHelloSCBs">01.C - Hello Secondary CBs</a></td>
   <!-- <td> </td>  -->
  </tr>
   <tr>
