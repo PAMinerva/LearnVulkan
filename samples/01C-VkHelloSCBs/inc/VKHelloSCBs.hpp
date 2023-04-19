@@ -19,9 +19,6 @@ private:
     
     void InitVulkan();
     void SetupPipeline();
-
-    void AllocateSCBs();
-    void PopulateSCBs();
     
     void PopulateCommandBuffer(uint32_t currentBufferIndex, uint32_t currentIndexImage);
     void SubmitCommandBuffer(uint32_t currentBufferIndex);
@@ -31,7 +28,11 @@ private:
     void CreatePipelineLayout();        // Create a pipeline layout
     void CreatePipelineObjects();       // Create a pipeline object
 
-    // Secondary Command Buffer;
+    // Allocate and record secondary Command Buffers;
+    void AllocateSCBs();
+    void PopulateSCBs();
+    
+    // Secondary Command Buffers;
      std::vector<VkCommandBuffer> m_secondaryCommandBuffers;
 
     // Vertex layout used in this sample
