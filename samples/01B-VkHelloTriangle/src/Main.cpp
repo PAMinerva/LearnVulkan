@@ -11,7 +11,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, char*, int nCmdShow)
         VKApplication::GetArgs()->push_back(__argv[i]);
     };
 
-    VKHelloTriangle sample(1280, 720, "VK Hello Window");
+    VKHelloTriangle sample(1280, 720, "VK Hello Triangle");
     VKApplication::Setup(&sample, true, hInstance, nCmdShow);
     return VKApplication::RenderLoop();
 }
@@ -23,7 +23,7 @@ int main(const int argc, const char* argv[])
         VKApplication::GetArgs()->push_back(argv[i]);
     };
 
-    VKHelloTriangle sample(1280, 720, "VK Hello Window");
+    VKHelloTriangle sample(1280, 720, "VK Hello Triangle");
     VKApplication::Setup(&sample, true);
     return VKApplication::RenderLoop();
 }

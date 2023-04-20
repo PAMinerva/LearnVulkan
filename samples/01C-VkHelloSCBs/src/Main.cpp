@@ -23,7 +23,7 @@ int main(const int argc, const char* argv[])
         VKApplication::GetArgs()->push_back(argv[i]);
     };
 
-    VKHelloTriangle sample(1280, 720, "VK Hello Window");
+    VKHelloTriangle sample(1280, 720, "VK Hello Secondary Command Buffers");
     VKApplication::Setup(&sample, true);
     return VKApplication::RenderLoop();
 }
