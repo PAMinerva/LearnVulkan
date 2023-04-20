@@ -29,11 +29,9 @@ SET links=/link kernel32.lib user32.lib shell32.lib gdi32.lib vulkan-1.lib ^
 
 echo Compiling shader...
 
-cd ..\..\bin
-glslangValidator -V ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.vert -o ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.vert.spv
-glslangValidator -V ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.frag -o ..\samples\01C-VkHelloSecondaryCommandBuffers\data\shaders\triangle.frag.spv
+..\..\bin\glslangValidator -V .\data\shaders\triangle.vert -o .\data\shaders\triangle.vert.spv
+..\..\bin\glslangValidator -V .\data\shaders\triangle.frag -o .\data\shaders\triangle.frag.spv
 
-cd ..\samples\01C-VkHelloSCBs
 echo Building project...
 
 cl src/*.cpp /MDd /EHsc /JMC /ZI %includes% %defines% %links%
