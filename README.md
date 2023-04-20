@@ -8,6 +8,8 @@ This repository hosts the code of the samples for the tutorial series you can fi
 
 ## How to build the samples
 
+### It works both on Windows and Linux
+
 - Clone this repository using the command ```git clone https://github.com/PAMinerva/LearnVulkan```.
 - Navigate to the "samples" directory, where you will find a folder for each sample.
 - Open the project of a sample by opening the corresponding folder with Visual Studio Code.
