@@ -46,14 +46,14 @@ void VKHelloSCB::AllocateSCBs()
     commandBufferAllocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
     commandBufferAllocateInfo.commandPool = m_sampleParams.GraphicsCommandPool;
     commandBufferAllocateInfo.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
-    commandBufferAllocateInfo.commandBufferCount = static_cast<uint32_t>(m_sampleParams.Framebuffers.size());
+    commandBufferAllocateInfo.commandBufferCount = static_cast<uint32_t>(m_secondaryCommandBuffers.size());
 
     VK_CHECK_RESULT(vkAllocateCommandBuffers(m_vulkanParams.Device, &commandBufferAllocateInfo, m_secondaryCommandBuffers.data()));
 }
 
 void VKHelloSCB::PopulateSCBs()
 {
-    // Secondary CBs will be executed by primary CBs inside a specific subpass of a render pass instance.
+    // Secondary CBs will be executed by primary CBs inside a (specific subpass of a) render pass instance.
     VkCommandBufferBeginInfo cmdBufInfo = {};
     cmdBufInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
     cmdBufInfo.pNext = nullptr;
