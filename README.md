@@ -13,8 +13,8 @@ This repository hosts the code of the samples for the tutorial series you can fi
 - Open the project of a sample by opening the corresponding folder with Visual Studio Code.
 - Open a source file in VS Code, for example src/Main.cpp.
 - Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> to compile the sample.
-- Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the sample.
-- Press <kbd>F5</kbd> to debug the sample.
+- Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to compile and run the sample.
+- Press <kbd>F5</kbd> to compile and debug the sample.
 
 <br>
 
