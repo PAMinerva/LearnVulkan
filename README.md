@@ -16,8 +16,8 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
 
 <table>
  <tr>
-  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01A-VkHelloWindow">01.A - Hello Window&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
-  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01B-VkHelloTriangle">01.B - Hello Triangle</a></td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01A-VkHelloWindow">01.A - Hello Window</a></td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01B-VkHelloTriangle">01.B - Hello Triangl</a></td>
  </tr>
  <tr>
   <td><img src="images/vkHelloWindow.png"></td>
