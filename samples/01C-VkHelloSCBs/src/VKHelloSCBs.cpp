@@ -523,7 +523,7 @@ void VKHelloSCB::PopulateCommandBuffer(uint32_t currentBufferIndex, uint32_t cur
     // This will clear the color attachment.
     vkCmdBeginRenderPass(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], &renderPassBeginInfo, VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS);
 
-    // Execute render commands from the secondary command buffer
+    // Execute render commands from a secondary command buffer
     vkCmdExecuteCommands(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], 1, &m_secondaryCommandBuffers[currentIndexImage]);
 
     // Ending the render pass will add an implicit barrier, transitioning the frame buffer color attachment to
