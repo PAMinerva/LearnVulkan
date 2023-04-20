@@ -6,6 +6,18 @@ This repository hosts the code of the samples for the tutorial series you can fi
 
 <br>
 
+## How to build the samples
+
+- Clone this repository using the command ```git clone https://github.com/PAMinerva/LearnVulkan```.
+- Navigate to the "samples" directory, where you will find a folder for each sample.
+- Open the project of a sample by opening the corresponding folder with Visual Studio Code.
+- Open a source file, for example Main.cpp.
+- Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> to compile the sample.
+- Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the sample.
+- Press <kbd>F5</kbd> to debug the sample.
+
+<br>
+
 ***
 As you can see, some tutorials are almost comparable to book chapters. It takes a fair amount of time and effort to write such detailed tutorials. So, if you like this project, or if you find it somewhat helpful, please consider supporting further development by clicking on the **Sponsor** button. Whether a small tip, a one time donation, or a recurring payment, it's all welcome! Thank you! <br>
 ***
