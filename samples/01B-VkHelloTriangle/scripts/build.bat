@@ -29,7 +29,7 @@ SET links=/link kernel32.lib user32.lib shell32.lib gdi32.lib vulkan-1.lib ^
 
 echo Compiling shader...
 cd ..\..\bin
-glslangValidator -V ..\samples/01B-VkHelloTriangle\data\shaders\triangle.vert -o ..\samples\01B-VkHelloTriangle\data\shaders\triangle.vert.spv
+glslangValidator -V ..\samples\01B-VkHelloTriangle\data\shaders\triangle.vert -o ..\samples\01B-VkHelloTriangle\data\shaders\triangle.vert.spv
 glslangValidator -V ..\samples\01B-VkHelloTriangle\data\shaders\triangle.frag -o ..\samples\01B-VkHelloTriangle\data\shaders\triangle.frag.spv
 
 cd ..\samples\01B-VkHelloTriangle

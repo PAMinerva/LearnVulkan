@@ -15,12 +15,12 @@ links="-lX11 -lvulkan"
 
 echo Compiling shader...
 cd ../../bin
-glslangValidator -V ../samples/01B-VkHelloTriangle/data/shaders/triangle.vert -o ../samples/01B-VkHelloTriangle/data/shaders/triangle.vert.spv
-glslangValidator -V ../samples/01B-VkHelloTriangle/data/shaders/triangle.frag -o ../samples/01B-VkHelloTriangle/data/shaders/triangle.frag.spv
+glslangValidator -V ../samples/01C-VkHelloSCBs/data/shaders/triangle.vert -o ../samples/01C-VkHelloSCBs/data/shaders/triangle.vert.spv
+glslangValidator -V ../samples/01C-VkHelloSCBs/data/shaders/triangle.frag -o ../samples/01C-VkHelloSCBs/data/shaders/triangle.frag.spv
 
-cd ../samples/01B-VkHelloSCBs
+cd ../samples/01C-VkHelloSCBs
 echo Building project...
 
-g++ -g src/*.cpp -o 01B-VkHelloSCBs.out $includes $defines $links
+g++ -g src/*.cpp -o 01C-VkHelloSCBs.out $includes $defines $links
 
 rm -f *.o
