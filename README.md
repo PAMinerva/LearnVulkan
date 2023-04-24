@@ -39,7 +39,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
  </tr>
    <tr>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01C-VkHelloSCBs">01.C - Hello Secondary CBs</a></td>
-    <td>01.D - Hello Uniforms (WIP)</td>
+    <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01D-VkHelloUniforms">01.D - Hello Uniforms</a></td>
   <!-- <td> </td>  -->
  </tr>
   <tr>
