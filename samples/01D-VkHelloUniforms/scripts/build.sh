@@ -14,15 +14,12 @@ defines="-DDEBUG -DVK_USE_PLATFORM_XLIB_KHR"
 links="-lX11 -lvulkan"
 
 echo Compiling shader...
-#cd ../../bin
-#glslangValidator -V ../samples/01D-VkHelloUniforms/data/shaders/triangle.vert -o ../samples/01D-VkHelloUniforms/data/shaders/triangle.vert.spv
-#glslangValidator -V ../samples/01D-VkHelloUniforms/data/shaders/triangle.frag -o ../samples/01D-VkHelloUniforms/data/shaders/triangle.frag.spv
-..\..\bin\glslangValidator -V .\data\shaders\triangle.vert -o .\data\shaders\triangle.vert.spv
-..\..\bin\glslangValidator -V .\data\shaders\triangle.frag -o .\data\shaders\triangle.frag.spv
 
-#cd ../samples/01D-VkHelloUniforms
+/../../bin/glslangValidator -V ./data/shaders/triangle.vert -o ./data/shaders/triangle.vert.spv
+/../../bin/glslangValidator -V ./data/shaders/triangle.frag -o ./data/shaders/triangle.frag.spv
+
 echo Building project...
 
-g++ -g src/*.cpp -o 01D-VkHelloUniforms.out $includes $defines $links
+g++ -g src/*.cpp -o 01C-VkHelloUniforms.out $includes $defines $links
 
 rm -f *.o
