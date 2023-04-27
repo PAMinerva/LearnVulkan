@@ -223,8 +223,8 @@ void VKHelloUniforms::CreateVertexBuffer()
 void VKHelloUniforms::CreateUniformBuffer()
 {
     //
-    // Create a uniform buffer in host-visible device memory
-    // since it needs to be updated frequently by the CPU.
+    // Create a buffer in host-visible device memory
+    // since it needs to be updated from the CPU.
     //
     
     // Used to request an allocation of a specific size from a certain memory type.
