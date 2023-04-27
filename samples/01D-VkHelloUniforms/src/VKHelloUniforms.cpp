@@ -49,7 +49,7 @@ void VKHelloUniforms::OnUpdate()
     m_frameCounter++;
 
     // Update buffer data.
-    UpdateBufferData();
+    UpdateStagingBufferData();
 }
 
 // Render the scene.
@@ -261,7 +261,7 @@ void VKHelloUniforms::CreateStagingBuffer()
     m_sampleParams.UniformBuffer.Descriptor.range = sizeof(uBufVS);
 }
 
-void VKHelloUniforms::UpdateBufferData()
+void VKHelloUniforms::UpdateStagingBufferData()
 {
     const float translationSpeed = 0.8f;    // speed
     const float offsetBounds = 1.25f;       // bound the displacement within the range [-1.25, +1.25]

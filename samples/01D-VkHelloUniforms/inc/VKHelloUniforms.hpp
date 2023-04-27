@@ -30,7 +30,7 @@ private:
     void CreatePipelineLayout();        // Create a pipeline layout
     void CreatePipelineObjects();       // Create a pipeline object
 
-    void UpdateBufferData();         // Update uniform buffer data
+    void UpdateStagingBufferData();     // Update uniform buffer data
 
     // For simplicity we use the same uniform block layout as in the vertex shader:
     //
