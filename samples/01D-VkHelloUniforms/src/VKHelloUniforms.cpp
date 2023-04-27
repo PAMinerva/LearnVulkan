@@ -224,7 +224,7 @@ void VKHelloUniforms::CreateHostVisibleBuffer()
 {
     //
     // Create a buffer in host-visible device memory
-    // since it needs to be updated from the CPU.
+    // since it needs to be updated from the CPU on a per-frame basis.
     //
     
     // Used to request an allocation of a specific size from a certain memory type.
