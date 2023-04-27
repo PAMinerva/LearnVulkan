@@ -6,7 +6,7 @@
 struct SampleParameters {
     VkRenderPass                        RenderPass;
     std::vector<VkFramebuffer>          Framebuffers;
-    BufferParameters                    UniformBuffer;
+    BufferParameters                    HostVisibleBuffer;
     VkPipeline                          GraphicsPipeline;
     DescriptorSetParameters             DescriptorSet;
     VkPipelineLayout                    PipelineLayout;

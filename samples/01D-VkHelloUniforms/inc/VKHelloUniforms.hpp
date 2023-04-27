@@ -22,15 +22,15 @@ private:
     void SubmitCommandBuffer(uint32_t currentBufferIndex);
     void PresentImage(uint32_t imageIndex);
     
-    void CreateVertexBuffer();          // Create a vertex buffer
-    void CreateStagingBuffer();         // Create a buffer in host-visible memory
-    void CreateDescriptorPool();        // Create a descriptor pool
-    void CreateDescriptorSetLayout();   // Create a descriptor set layout
-    void CreateDescriptorSet();         // Create a descriptor set
-    void CreatePipelineLayout();        // Create a pipeline layout
-    void CreatePipelineObjects();       // Create a pipeline object
+    void CreateVertexBuffer();            // Create a vertex buffer
+    void CreateHostVisibleBuffer();       // Create a buffer in host-visible memory
+    void CreateDescriptorPool();          // Create a descriptor pool
+    void CreateDescriptorSetLayout();     // Create a descriptor set layout
+    void CreateDescriptorSet();           // Create a descriptor set
+    void CreatePipelineLayout();          // Create a pipeline layout
+    void CreatePipelineObjects();         // Create a pipeline object
 
-    void UpdateStagingBufferData();     // Update uniform buffer data
+    void UpdateHostVisibleBufferData();   // Update buffer data
 
     // For simplicity we use the same uniform block layout as in the vertex shader:
     //

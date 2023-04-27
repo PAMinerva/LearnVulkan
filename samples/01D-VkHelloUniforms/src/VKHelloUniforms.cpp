@@ -30,7 +30,7 @@ void VKHelloUniforms::InitVulkan()
 void VKHelloUniforms::SetupPipeline()
 {
     CreateVertexBuffer();
-    CreateStagingBuffer();
+    CreateHostVisibleBuffer();
     CreateDescriptorPool();
     CreateDescriptorSetLayout();
     CreateDescriptorSet();
@@ -49,7 +49,7 @@ void VKHelloUniforms::OnUpdate()
     m_frameCounter++;
 
     // Update buffer data.
-    UpdateStagingBufferData();
+    UpdateHostVisibleBufferData();
 }
 
 // Render the scene.
@@ -86,7 +86,7 @@ void VKHelloUniforms::OnDestroy()
     m_initialized = false;
 
     // Unmap host-visible device memory
-    vkUnmapMemory(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Memory);
+    vkUnmapMemory(m_vulkanParams.Device, m_sampleParams.HostVisibleBuffer.Memory);
 
     // Ensure all operations on the device have been finished before destroying resources
     vkDeviceWaitIdle(m_vulkanParams.Device);
@@ -96,8 +96,8 @@ void VKHelloUniforms::OnDestroy()
     vkFreeMemory(m_vulkanParams.Device, m_vertices.memory, nullptr);
 
     // Destroy buffer object and deallocate backing memory
-    vkDestroyBuffer(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Handle, nullptr);
-    vkFreeMemory(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Memory, nullptr);
+    vkDestroyBuffer(m_vulkanParams.Device, m_sampleParams.HostVisibleBuffer.Handle, nullptr);
+    vkFreeMemory(m_vulkanParams.Device, m_sampleParams.HostVisibleBuffer.Memory, nullptr);
 
     // Destroy descriptor pool
     vkDestroyDescriptorPool(m_vulkanParams.Device, m_sampleParams.DescriptorSet.Pool, nullptr);
@@ -220,7 +220,7 @@ void VKHelloUniforms::CreateVertexBuffer()
     VK_CHECK_RESULT(vkBindBufferMemory(m_vulkanParams.Device, m_vertices.buffer, m_vertices.memory, 0));
 }
 
-void VKHelloUniforms::CreateStagingBuffer()
+void VKHelloUniforms::CreateHostVisibleBuffer()
 {
     //
     // Create a buffer in host-visible device memory
@@ -237,31 +237,31 @@ void VKHelloUniforms::CreateStagingBuffer()
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
     bufferInfo.size = sizeof(uBufVS);
     bufferInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
-    VK_CHECK_RESULT(vkCreateBuffer(m_vulkanParams.Device, &bufferInfo, nullptr, &m_sampleParams.UniformBuffer.Handle));
+    VK_CHECK_RESULT(vkCreateBuffer(m_vulkanParams.Device, &bufferInfo, nullptr, &m_sampleParams.HostVisibleBuffer.Handle));
 
     // Request a memory allocation from coherent, host-visible device memory that is large 
     // enough to hold the buffer.
     // VK_MEMORY_PROPERTY_HOST_COHERENT_BIT makes sure writes performed by the host (application)
     // will be directly visible to the device without requiring the explicit flushing of cached memory.
-    vkGetBufferMemoryRequirements(m_vulkanParams.Device,m_sampleParams.UniformBuffer.Handle, &memReqs);
+    vkGetBufferMemoryRequirements(m_vulkanParams.Device,m_sampleParams.HostVisibleBuffer.Handle, &memReqs);
     memAlloc.allocationSize = memReqs.size;
     memAlloc.memoryTypeIndex = GetMemoryTypeIndex(memReqs.memoryTypeBits, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, m_deviceMemoryProperties);
-    VK_CHECK_RESULT(vkAllocateMemory(m_vulkanParams.Device, &memAlloc, nullptr, &m_sampleParams.UniformBuffer.Memory));
+    VK_CHECK_RESULT(vkAllocateMemory(m_vulkanParams.Device, &memAlloc, nullptr, &m_sampleParams.HostVisibleBuffer.Memory));
 
     // Map the host-visible device memory just allocated.
     // Leave it mapped so that we don't have to map and unmap it every time we want to update the buffer data.
-    VK_CHECK_RESULT(vkMapMemory(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Memory, 0, memAlloc.allocationSize, 0, &m_sampleParams.UniformBuffer.MappedMemory));
+    VK_CHECK_RESULT(vkMapMemory(m_vulkanParams.Device, m_sampleParams.HostVisibleBuffer.Memory, 0, memAlloc.allocationSize, 0, &m_sampleParams.HostVisibleBuffer.MappedMemory));
 
     // Bind the buffer object to the backing host-visible device memory just allocated.
-    VK_CHECK_RESULT(vkBindBufferMemory(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Handle, m_sampleParams.UniformBuffer.Memory, 0));
+    VK_CHECK_RESULT(vkBindBufferMemory(m_vulkanParams.Device, m_sampleParams.HostVisibleBuffer.Handle, m_sampleParams.HostVisibleBuffer.Memory, 0));
 
-    // Store information needed to write\update the descriptor (uniform buffer) of the buffer in the descriptor set later.
-    m_sampleParams.UniformBuffer.Descriptor.buffer = m_sampleParams.UniformBuffer.Handle;
-    m_sampleParams.UniformBuffer.Descriptor.offset = 0;
-    m_sampleParams.UniformBuffer.Descriptor.range = sizeof(uBufVS);
+    // Store information needed to write\update the corresponding descriptor (uniform buffer) in the descriptor set later.
+    m_sampleParams.HostVisibleBuffer.Descriptor.buffer = m_sampleParams.HostVisibleBuffer.Handle;
+    m_sampleParams.HostVisibleBuffer.Descriptor.offset = 0;
+    m_sampleParams.HostVisibleBuffer.Descriptor.range = sizeof(uBufVS);
 }
 
-void VKHelloUniforms::UpdateStagingBufferData()
+void VKHelloUniforms::UpdateHostVisibleBufferData()
 {
     const float translationSpeed = 0.8f;    // speed
     const float offsetBounds = 1.25f;       // bound the displacement within the range [-1.25, +1.25]
@@ -275,7 +275,7 @@ void VKHelloUniforms::UpdateStagingBufferData()
 
     // Update uniform buffer data
     // Note: Since we requested a host coherent memory type for the uniform buffer, the write is instantly visible to the GPU
-    memcpy(m_sampleParams.UniformBuffer.MappedMemory, &uBufVS, sizeof(uBufVS));
+    memcpy(m_sampleParams.HostVisibleBuffer.MappedMemory, &uBufVS, sizeof(uBufVS));
 }
 
 void VKHelloUniforms::CreateDescriptorPool()
@@ -358,7 +358,7 @@ void VKHelloUniforms::CreateDescriptorSet()
     writeDescriptorSet.dstSet = m_sampleParams.DescriptorSet.Handle;
     writeDescriptorSet.descriptorCount = 1;
     writeDescriptorSet.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    writeDescriptorSet.pBufferInfo = &m_sampleParams.UniformBuffer.Descriptor;
+    writeDescriptorSet.pBufferInfo = &m_sampleParams.HostVisibleBuffer.Descriptor;
     writeDescriptorSet.dstBinding = 0;
 
     vkUpdateDescriptorSets(m_vulkanParams.Device, 1, &writeDescriptorSet, 0, nullptr);
