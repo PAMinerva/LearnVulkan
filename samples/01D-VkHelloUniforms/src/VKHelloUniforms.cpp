@@ -30,7 +30,7 @@ void VKHelloUniforms::InitVulkan()
 void VKHelloUniforms::SetupPipeline()
 {
     CreateVertexBuffer();
-    CreateUniformBuffer();
+    CreateStagingBuffer();
     CreateDescriptorPool();
     CreateDescriptorSetLayout();
     CreateDescriptorSet();
@@ -48,8 +48,8 @@ void VKHelloUniforms::OnUpdate()
     snprintf(m_lastFPS, (size_t)32, "%u fps", m_timer.GetFramesPerSecond());
     m_frameCounter++;
 
-    // Update uniform buffer data.
-    UpdateUniformBuffer();
+    // Update buffer data.
+    UpdateBufferData();
 }
 
 // Render the scene.
@@ -95,7 +95,7 @@ void VKHelloUniforms::OnDestroy()
     vkDestroyBuffer(m_vulkanParams.Device, m_vertices.buffer, nullptr);
     vkFreeMemory(m_vulkanParams.Device, m_vertices.memory, nullptr);
 
-    // Destroy uniform buffer object and deallocate backing memory
+    // Destroy buffer object and deallocate backing memory
     vkDestroyBuffer(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Handle, nullptr);
     vkFreeMemory(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Memory, nullptr);
 
@@ -220,7 +220,7 @@ void VKHelloUniforms::CreateVertexBuffer()
     VK_CHECK_RESULT(vkBindBufferMemory(m_vulkanParams.Device, m_vertices.buffer, m_vertices.memory, 0));
 }
 
-void VKHelloUniforms::CreateUniformBuffer()
+void VKHelloUniforms::CreateStagingBuffer()
 {
     //
     // Create a buffer in host-visible device memory
@@ -261,7 +261,7 @@ void VKHelloUniforms::CreateUniformBuffer()
     m_sampleParams.UniformBuffer.Descriptor.range = sizeof(uBufVS);
 }
 
-void VKHelloUniforms::UpdateUniformBuffer()
+void VKHelloUniforms::UpdateBufferData()
 {
     const float translationSpeed = 0.8f;    // speed
     const float offsetBounds = 1.25f;       // bound the displacement within the range [-1.25, +1.25]

@@ -23,14 +23,14 @@ private:
     void PresentImage(uint32_t imageIndex);
     
     void CreateVertexBuffer();          // Create a vertex buffer
-    void CreateUniformBuffer();         // Create a uniform buffer
+    void CreateStagingBuffer();         // Create a buffer in host-visible memory
     void CreateDescriptorPool();        // Create a descriptor pool
     void CreateDescriptorSetLayout();   // Create a descriptor set layout
     void CreateDescriptorSet();         // Create a descriptor set
     void CreatePipelineLayout();        // Create a pipeline layout
     void CreatePipelineObjects();       // Create a pipeline object
 
-    void UpdateUniformBuffer();         // Update uniform buffer data
+    void UpdateBufferData();         // Update uniform buffer data
 
     // For simplicity we use the same uniform block layout as in the vertex shader:
     //
