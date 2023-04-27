@@ -240,7 +240,7 @@ void VKHelloUniforms::CreateUniformBuffer()
     VK_CHECK_RESULT(vkCreateBuffer(m_vulkanParams.Device, &bufferInfo, nullptr, &m_sampleParams.UniformBuffer.Handle));
 
     // Request a memory allocation from coherent, host-visible device memory that is large 
-    // enough to hold the uniform buffer.
+    // enough to hold the buffer.
     // VK_MEMORY_PROPERTY_HOST_COHERENT_BIT makes sure writes performed by the host (application)
     // will be directly visible to the device without requiring the explicit flushing of cached memory.
     vkGetBufferMemoryRequirements(m_vulkanParams.Device,m_sampleParams.UniformBuffer.Handle, &memReqs);
@@ -248,14 +248,14 @@ void VKHelloUniforms::CreateUniformBuffer()
     memAlloc.memoryTypeIndex = GetMemoryTypeIndex(memReqs.memoryTypeBits, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, m_deviceMemoryProperties);
     VK_CHECK_RESULT(vkAllocateMemory(m_vulkanParams.Device, &memAlloc, nullptr, &m_sampleParams.UniformBuffer.Memory));
 
-    // Map the host-visible device memory.
-    // Leave it mapped so that we don't have to map and unmap it every time we want to update the data in the uniform buffer.
+    // Map the host-visible device memory just allocated.
+    // Leave it mapped so that we don't have to map and unmap it every time we want to update the buffer data.
     VK_CHECK_RESULT(vkMapMemory(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Memory, 0, memAlloc.allocationSize, 0, &m_sampleParams.UniformBuffer.MappedMemory));
 
     // Bind the buffer object to the backing host-visible device memory just allocated.
     VK_CHECK_RESULT(vkBindBufferMemory(m_vulkanParams.Device, m_sampleParams.UniformBuffer.Handle, m_sampleParams.UniformBuffer.Memory, 0));
 
-    // Store information needed to write\update the descriptor of the uniform buffer in the descriptor set later.
+    // Store information needed to write\update the descriptor (uniform buffer) of the buffer in the descriptor set later.
     m_sampleParams.UniformBuffer.Descriptor.buffer = m_sampleParams.UniformBuffer.Handle;
     m_sampleParams.UniformBuffer.Descriptor.offset = 0;
     m_sampleParams.UniformBuffer.Descriptor.range = sizeof(uBufVS);
