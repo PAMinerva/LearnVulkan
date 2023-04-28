@@ -33,7 +33,7 @@ void VKHelloUniforms::SetupPipeline()
     CreateHostVisibleBuffer();
     CreateDescriptorPool();
     CreateDescriptorSetLayout();
-    CreateDescriptorSet();
+    AllocateDescriptorSet();
     CreatePipelineLayout();
     CreatePipelineObjects();
     m_initialized = true;
@@ -281,7 +281,7 @@ void VKHelloUniforms::UpdateHostVisibleBufferData()
 void VKHelloUniforms::CreateDescriptorPool()
 {
     //
-    // To calculate the amount of memory needed for a descriptor pool, the implementation needs to know
+    // To calculate the amount of memory required for a descriptor pool, the implementation needs to know
     // the max numbers of descriptor sets we will request from the pool, and the number of descriptors 
     // per type we will include in those descriptor sets.
     //
@@ -292,7 +292,7 @@ void VKHelloUniforms::CreateDescriptorPool()
     typeCounts[0].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
     typeCounts[0].descriptorCount = 1;
     // For additional types you need to add new entries in the type count list
-    // E.g. for two combined image samplers :
+    // E.g. for two combined image samplers:
     // typeCounts[1].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
     // typeCounts[1].descriptorCount = 4;
 
@@ -312,7 +312,7 @@ void VKHelloUniforms::CreateDescriptorPool()
 void VKHelloUniforms::CreateDescriptorSetLayout()
 {
     //
-    // Create a Descriptor Set Layout to connect binding points (resource declarations) 
+    // Create a Descriptor Set Layout to connect binding points (resource declarations)
     // in the shader code to descriptors within descriptor sets.
     //
     // Binding 0: Uniform buffer (Vertex shader)
@@ -332,10 +332,10 @@ void VKHelloUniforms::CreateDescriptorSetLayout()
     VK_CHECK_RESULT(vkCreateDescriptorSetLayout(m_vulkanParams.Device, &descriptorLayout, nullptr, &m_sampleParams.DescriptorSet.Layout));
 }
 
-void VKHelloUniforms::CreateDescriptorSet()
+void VKHelloUniforms::AllocateDescriptorSet()
 {
     // Allocate a new descriptor set from the global descriptor pool.
-    // Use the descriptor set layout to calculate the amount on memory needed to store the descriptor set.
+    // Use the descriptor set layout to calculate the amount on memory required to store the descriptor set.
     VkDescriptorSetAllocateInfo allocInfo = {};
     allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
     allocInfo.descriptorPool = m_sampleParams.DescriptorSet.Pool;
@@ -346,14 +346,15 @@ void VKHelloUniforms::CreateDescriptorSet()
 
     //
     // Write the descriptors updating the corresponding descriptor set.
-    // For every binding point used in a shader code there needs to be one descriptor 
-    // (in a descriptor set) matching that binding point.
+    // For every binding point used in a shader code there needs to be at least a descriptor 
+    // in a descriptor set matching that binding point.
     //
 
     VkWriteDescriptorSet writeDescriptorSet = {};
 
-    // Write the descriptor of the uniform buffer 
-    // We need to pass the descriptor set where it is store and the associated binding point
+    // Write the descriptor of the uniform buffer.
+    // We need to pass the descriptor set where it is store and 
+    // the binding point (specified in a descriptor binding) that it should be associated with.
     writeDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
     writeDescriptorSet.dstSet = m_sampleParams.DescriptorSet.Handle;
     writeDescriptorSet.descriptorCount = 1;
