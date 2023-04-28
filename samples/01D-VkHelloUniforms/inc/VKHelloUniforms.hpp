@@ -35,7 +35,7 @@ private:
     // For simplicity we use the same uniform block layout as in the vertex shader:
     //
     // layout(set = 0, binding = 0) uniform buf {
-    //         vec4 displacement;
+    //    vec4 displacement;
     // } uBuf;
     //
     // This way we can just memcopy the uBufVS data to match the uBuf memory layout.
