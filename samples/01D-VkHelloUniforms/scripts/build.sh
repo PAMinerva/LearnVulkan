@@ -15,8 +15,8 @@ links="-lX11 -lvulkan"
 
 echo Compiling shader...
 
-/../../bin/glslangValidator -V ./data/shaders/triangle.vert -o ./data/shaders/triangle.vert.spv
-/../../bin/glslangValidator -V ./data/shaders/triangle.frag -o ./data/shaders/triangle.frag.spv
+/../../bin/glslangValidator -V -g ./data/shaders/triangle.vert -o ./data/shaders/triangle.vert.spv
+/../../bin/glslangValidator -V -g ./data/shaders/triangle.frag -o ./data/shaders/triangle.frag.spv
 
 echo Building project...
 
