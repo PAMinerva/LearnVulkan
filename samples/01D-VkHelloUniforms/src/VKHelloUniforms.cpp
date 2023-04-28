@@ -266,7 +266,7 @@ void VKHelloUniforms::UpdateHostVisibleBufferData()
     const float translationSpeed = 0.8f;    // speed
     const float offsetBounds = 1.25f;       // bound the displacement within the range [-1.25, +1.25]
  
-    // From speed = displacement / time you can derive that: displacement = speed * time
+    // From speed = (displacement / time) you can derive that: displacement = (speed * time)
     uBufVS.displacement[0] += translationSpeed * m_timer.GetElapsedSeconds();
     if (uBufVS.displacement[0] > offsetBounds)
     {
@@ -618,12 +618,19 @@ void VKHelloUniforms::PopulateCommandBuffer(uint32_t currentBufferIndex, uint32_
     vkCmdSetScissor(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], 0, 1, &scissor);
 
     // Bind descriptor sets
-    vkCmdBindDescriptorSets(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_sampleParams.PipelineLayout, 0, 1, &m_sampleParams.DescriptorSet.Handle, 0, nullptr);
+    vkCmdBindDescriptorSets(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], 
+                            VK_PIPELINE_BIND_POINT_GRAPHICS, 
+                            m_sampleParams.PipelineLayout, 
+                            0, 1, 
+                            &m_sampleParams.DescriptorSet.Handle, 
+                            0, nullptr);
 
     // Bind the graphics pipeline.
     // The pipeline object contains all states of the graphics pipeline, 
     // binding it will set all the states specified at pipeline creation time
-    vkCmdBindPipeline(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_sampleParams.GraphicsPipeline);
+    vkCmdBindPipeline(m_sampleParams.GraphicsCommandBuffers[currentBufferIndex], 
+                      VK_PIPELINE_BIND_POINT_GRAPHICS, 
+                      m_sampleParams.GraphicsPipeline);
     
     // Bind triangle vertex buffer (contains position and colors)
     VkDeviceSize offsets[1] = { 0 };
