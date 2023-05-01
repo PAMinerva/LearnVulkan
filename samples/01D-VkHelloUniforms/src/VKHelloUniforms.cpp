@@ -354,7 +354,7 @@ void VKHelloUniforms::AllocateDescriptorSet()
 
     // Write the descriptor of the uniform buffer.
     // We need to pass the descriptor set where it is store and 
-    // the binding point (specified in a descriptor binding) that it should be associated with.
+    // the binding point associated with descriptor in the descriptor set.
     writeDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
     writeDescriptorSet.dstSet = m_sampleParams.DescriptorSet.Handle;
     writeDescriptorSet.descriptorCount = 1;
