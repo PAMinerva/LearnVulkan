@@ -314,8 +314,8 @@ void VKSample::CreateSwapchain(uint32_t* width, uint32_t* height, bool vsync)
         }
     }
 
-    // Determine the number of images
-    uint32_t desiredNumberOfSwapchainImages = surfCaps.minImageCount + 1;
+    // Determine the number of images and set the number of command buffers.
+    uint32_t desiredNumberOfSwapchainImages = m_commandBufferCount = surfCaps.minImageCount + 1;
     if ((surfCaps.maxImageCount > 0) && (desiredNumberOfSwapchainImages > surfCaps.maxImageCount))
     {
         desiredNumberOfSwapchainImages = surfCaps.maxImageCount;

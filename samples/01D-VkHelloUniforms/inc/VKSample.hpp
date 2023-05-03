@@ -91,7 +91,7 @@ protected:
     char m_lastFPS[32];
 
     // Number of command buffers
-    uint32_t m_commandBufferCount = 3;
+    uint32_t m_commandBufferCount = 0;
 
 private:
     // Root assets path.
