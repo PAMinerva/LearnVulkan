@@ -44,14 +44,22 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <td><img src="images/vkHelloWindow.png"></td>
   <td><img src="images/VKHelloTriangle.png"></td>
  </tr>
-   <tr>
+ <tr>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01C-VkHelloSCBs">01.C - Hello Secondary CBs</a></td>
-    <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01D-VkHelloUniforms">01.D - Hello Uniforms</a></td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01D-VkHelloUniforms">01.D - Hello Uniforms</a></td>
   <!-- <td> </td>  -->
  </tr>
   <tr>
   <td><img src="images/VKHelloSCBs.png"></td>
   <td><img src="images/VKHelloUniforms.gif"></td>
+  <!-- <td> </td>  -->
+ </tr>
+ <tr>
+  <td>01.E - Hello Frame Buffering (WIP)</a></td>
+  <!-- <td> </td>  -->
+ </tr>
+  <tr>
+  <td><img src="images/vkHelloFrameBuffering.gif"></td>
   <!-- <td> </td>  -->
  </tr>
 </table>
