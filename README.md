@@ -55,7 +55,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
  <tr>
-  <td>01.E - Hello Frame Buffering (WIP)</a></td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01E-VkHelloFrameBuffering">01.E - Hello Frame Buffering</a></td>
   <!-- <td> </td>  -->
  </tr>
   <tr>
