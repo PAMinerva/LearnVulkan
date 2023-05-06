@@ -104,7 +104,7 @@ struct SampleParameters {
     VkDescriptorSetLayout                DescriptorSetLayout;
     VkPipelineLayout                     PipelineLayout;
     VkCommandPool                        GraphicsCommandPool;
-    FrameResources                       FrameResources;
+    FrameResources                       FrameRes;
 
 
     SampleParameters() :
@@ -115,7 +115,7 @@ struct SampleParameters {
         GraphicsPipeline(VK_NULL_HANDLE),
         DescriptorPool(VK_NULL_HANDLE),
         DescriptorSetLayout(VK_NULL_HANDLE),
-        FrameResources() {
+        FrameRes() {
     }
 };
 

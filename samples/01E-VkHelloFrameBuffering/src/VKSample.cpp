@@ -573,7 +573,7 @@ void VKSample::AllocateCommandBuffers()
     }
 
     // Create one command buffer for each swap chain image
-    m_sampleParams.FrameResources.GraphicsCommandBuffers.resize(MAX_FRAME_LAG);
+    m_sampleParams.FrameRes.GraphicsCommandBuffers.resize(MAX_FRAME_LAG);
 
     VkCommandBufferAllocateInfo commandBufferAllocateInfo{};
     commandBufferAllocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -581,14 +581,14 @@ void VKSample::AllocateCommandBuffers()
     commandBufferAllocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
     commandBufferAllocateInfo.commandBufferCount = static_cast<uint32_t>(MAX_FRAME_LAG);
 
-    VK_CHECK_RESULT(vkAllocateCommandBuffers(m_vulkanParams.Device, &commandBufferAllocateInfo, m_sampleParams.FrameResources.GraphicsCommandBuffers.data()));
+    VK_CHECK_RESULT(vkAllocateCommandBuffers(m_vulkanParams.Device, &commandBufferAllocateInfo, m_sampleParams.FrameRes.GraphicsCommandBuffers.data()));
 }
 
 void VKSample::CreateSynchronizationObjects()
 {
-    m_sampleParams.FrameResources.ImageAvailableSemaphores.resize(MAX_FRAME_LAG);
-    m_sampleParams.FrameResources.RenderingFinishedSemaphores.resize(MAX_FRAME_LAG);
-    m_sampleParams.FrameResources.Fences.resize(MAX_FRAME_LAG);
+    m_sampleParams.FrameRes.ImageAvailableSemaphores.resize(MAX_FRAME_LAG);
+    m_sampleParams.FrameRes.RenderingFinishedSemaphores.resize(MAX_FRAME_LAG);
+    m_sampleParams.FrameRes.Fences.resize(MAX_FRAME_LAG);
 
     // Create semaphores to synchronize acquiring presentable images before rendering and 
     // waiting for drawing to be complete before presenting
@@ -604,13 +604,13 @@ void VKSample::CreateSynchronizationObjects()
     for (size_t i = 0; i < MAX_FRAME_LAG; i++)
     {
         // Create an unsignaled semaphore
-        VK_CHECK_RESULT(vkCreateSemaphore(m_vulkanParams.Device, &semaphoreCreateInfo, nullptr, &m_sampleParams.FrameResources.ImageAvailableSemaphores[i]));
+        VK_CHECK_RESULT(vkCreateSemaphore(m_vulkanParams.Device, &semaphoreCreateInfo, nullptr, &m_sampleParams.FrameRes.ImageAvailableSemaphores[i]));
 
         // Create an unsignaled semaphore
-        VK_CHECK_RESULT(vkCreateSemaphore(m_vulkanParams.Device, &semaphoreCreateInfo, nullptr, &m_sampleParams.FrameResources.RenderingFinishedSemaphores[i]));
+        VK_CHECK_RESULT(vkCreateSemaphore(m_vulkanParams.Device, &semaphoreCreateInfo, nullptr, &m_sampleParams.FrameRes.RenderingFinishedSemaphores[i]));
 
         // Create a signaled fence
-        VK_CHECK_RESULT(vkCreateFence(m_vulkanParams.Device, &fenceCreateInfo, nullptr, &m_sampleParams.FrameResources.Fences[i]));
+        VK_CHECK_RESULT(vkCreateFence(m_vulkanParams.Device, &fenceCreateInfo, nullptr, &m_sampleParams.FrameRes.Fences[i]));
     }
 }
 
@@ -640,8 +640,8 @@ void VKSample::WindowResize(uint32_t width, uint32_t height)
     // references to the recreated frame buffer
     vkFreeCommandBuffers(m_vulkanParams.Device, 
                          m_sampleParams.GraphicsCommandPool, 
-                         static_cast<uint32_t>(m_sampleParams.FrameResources.GraphicsCommandBuffers.size()), 
-                         m_sampleParams.FrameResources.GraphicsCommandBuffers.data());
+                         static_cast<uint32_t>(m_sampleParams.FrameRes.GraphicsCommandBuffers.size()), 
+                         m_sampleParams.FrameRes.GraphicsCommandBuffers.data());
     AllocateCommandBuffers();
 
     vkDeviceWaitIdle(m_vulkanParams.Device);

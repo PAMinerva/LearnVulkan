@@ -56,15 +56,15 @@ void VKHelloFrameBuffering::OnUpdate()
 void VKHelloFrameBuffering::OnRender()
 {
     // Ensure no more than MAX_FRAME_LAG frames are queued.
-    vkWaitForFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameResources.Fences[m_frameIndex], VK_TRUE, UINT64_MAX);
-    vkResetFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameResources.Fences[m_frameIndex]);
+    vkWaitForFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameRes.Fences[m_frameIndex], VK_TRUE, UINT64_MAX);
+    vkResetFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameRes.Fences[m_frameIndex]);
 
     // Get the index of the next available image in the swap chain
     uint32_t imageIndex;
     VkResult acquire = vkAcquireNextImageKHR(m_vulkanParams.Device, 
                                              m_vulkanParams.SwapChain.Handle, 
                                              UINT64_MAX, 
-                                             m_sampleParams.FrameResources.ImageAvailableSemaphores[m_frameIndex], 
+                                             m_sampleParams.FrameRes.ImageAvailableSemaphores[m_frameIndex], 
                                              nullptr, &imageIndex);
     if (!((acquire == VK_SUCCESS) || (acquire == VK_SUBOPTIMAL_KHR)))
     {
@@ -99,19 +99,19 @@ void VKHelloFrameBuffering::OnDestroy()
     for (uint32_t i = 0; i < MAX_FRAME_LAG; i++)
     {
         // Unmap host-visible device memory
-        vkUnmapMemory(m_vulkanParams.Device, m_sampleParams.FrameResources.HostVisibleBuffers[i].Memory);
+        vkUnmapMemory(m_vulkanParams.Device, m_sampleParams.FrameRes.HostVisibleBuffers[i].Memory);
 
         // Destroy buffer object and deallocate backing memory
-        vkDestroyBuffer(m_vulkanParams.Device, m_sampleParams.FrameResources.HostVisibleBuffers[i].Handle, nullptr);
-        vkFreeMemory(m_vulkanParams.Device, m_sampleParams.FrameResources.HostVisibleBuffers[i].Memory, nullptr);
+        vkDestroyBuffer(m_vulkanParams.Device, m_sampleParams.FrameRes.HostVisibleBuffers[i].Handle, nullptr);
+        vkFreeMemory(m_vulkanParams.Device, m_sampleParams.FrameRes.HostVisibleBuffers[i].Memory, nullptr);
 
         // Wait for fence before destroying it
-        vkWaitForFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameResources.Fences[i], VK_TRUE, UINT64_MAX);
-        vkDestroyFence(m_vulkanParams.Device, m_sampleParams.FrameResources.Fences[i], NULL);
+        vkWaitForFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameRes.Fences[i], VK_TRUE, UINT64_MAX);
+        vkDestroyFence(m_vulkanParams.Device, m_sampleParams.FrameRes.Fences[i], NULL);
 
         // Destroy semaphores
-        vkDestroySemaphore(m_vulkanParams.Device, m_sampleParams.FrameResources.ImageAvailableSemaphores[i], NULL);
-        vkDestroySemaphore(m_vulkanParams.Device, m_sampleParams.FrameResources.RenderingFinishedSemaphores[i], NULL);
+        vkDestroySemaphore(m_vulkanParams.Device, m_sampleParams.FrameRes.ImageAvailableSemaphores[i], NULL);
+        vkDestroySemaphore(m_vulkanParams.Device, m_sampleParams.FrameRes.RenderingFinishedSemaphores[i], NULL);
     }
 
     // Destroy descriptor pool
@@ -139,8 +139,8 @@ void VKHelloFrameBuffering::OnDestroy()
     // Free allocated command buffers
     vkFreeCommandBuffers(m_vulkanParams.Device, 
                          m_sampleParams.GraphicsCommandPool,
-                          static_cast<uint32_t>(m_sampleParams.FrameResources.GraphicsCommandBuffers.size()), 
-                          m_sampleParams.FrameResources.GraphicsCommandBuffers.data());
+                          static_cast<uint32_t>(m_sampleParams.FrameRes.GraphicsCommandBuffers.size()), 
+                          m_sampleParams.FrameRes.GraphicsCommandBuffers.data());
 
     vkDestroyRenderPass(m_vulkanParams.Device, m_sampleParams.RenderPass, NULL);
 
@@ -249,36 +249,36 @@ void VKHelloFrameBuffering::CreateHostVisibleBuffers()
     bufferInfo.size = sizeof(uBufVS);
     bufferInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
 
-    m_sampleParams.FrameResources.HostVisibleBuffers.resize(MAX_FRAME_LAG);
+    m_sampleParams.FrameRes.HostVisibleBuffers.resize(MAX_FRAME_LAG);
     for (size_t i = 0; i < MAX_FRAME_LAG; i++)
     {
-        VK_CHECK_RESULT(vkCreateBuffer(m_vulkanParams.Device, &bufferInfo, nullptr, &m_sampleParams.FrameResources.HostVisibleBuffers[i].Handle));
+        VK_CHECK_RESULT(vkCreateBuffer(m_vulkanParams.Device, &bufferInfo, nullptr, &m_sampleParams.FrameRes.HostVisibleBuffers[i].Handle));
 
         // Request a memory allocation from coherent, host-visible device memory that is large 
         // enough to hold the buffer.
         // VK_MEMORY_PROPERTY_HOST_COHERENT_BIT makes sure writes performed by the host (application)
         // will be directly visible to the device without requiring the explicit flushing of cached memory.
-        vkGetBufferMemoryRequirements(m_vulkanParams.Device,m_sampleParams.FrameResources.HostVisibleBuffers[i].Handle, &memReqs);
+        vkGetBufferMemoryRequirements(m_vulkanParams.Device,m_sampleParams.FrameRes.HostVisibleBuffers[i].Handle, &memReqs);
         memAlloc.allocationSize = memReqs.size;
         memAlloc.memoryTypeIndex = GetMemoryTypeIndex(memReqs.memoryTypeBits, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, m_deviceMemoryProperties);
-        VK_CHECK_RESULT(vkAllocateMemory(m_vulkanParams.Device, &memAlloc, nullptr, &m_sampleParams.FrameResources.HostVisibleBuffers[i].Memory));
+        VK_CHECK_RESULT(vkAllocateMemory(m_vulkanParams.Device, &memAlloc, nullptr, &m_sampleParams.FrameRes.HostVisibleBuffers[i].Memory));
 
         // Map the host-visible device memory just allocated.
         // Leave it mapped so that we don't have to map and unmap it every time we want to update the buffer data.
         VK_CHECK_RESULT(vkMapMemory(m_vulkanParams.Device, 
-                                    m_sampleParams.FrameResources.HostVisibleBuffers[i].Memory, 
+                                    m_sampleParams.FrameRes.HostVisibleBuffers[i].Memory, 
                                     0, memAlloc.allocationSize, 
-                                    0, &m_sampleParams.FrameResources.HostVisibleBuffers[i].MappedMemory));
+                                    0, &m_sampleParams.FrameRes.HostVisibleBuffers[i].MappedMemory));
 
         // Bind the buffer object to the backing host-visible device memory just allocated.
         VK_CHECK_RESULT(vkBindBufferMemory(m_vulkanParams.Device, 
-                                           m_sampleParams.FrameResources.HostVisibleBuffers[i].Handle, 
-                                           m_sampleParams.FrameResources.HostVisibleBuffers[i].Memory, 0));
+                                           m_sampleParams.FrameRes.HostVisibleBuffers[i].Handle, 
+                                           m_sampleParams.FrameRes.HostVisibleBuffers[i].Memory, 0));
 
         // Store information needed to write\update the corresponding descriptor (uniform buffer) in the descriptor set later.
-        m_sampleParams.FrameResources.HostVisibleBuffers[i].Descriptor.buffer = m_sampleParams.FrameResources.HostVisibleBuffers[i].Handle;
-        m_sampleParams.FrameResources.HostVisibleBuffers[i].Descriptor.offset = 0;
-        m_sampleParams.FrameResources.HostVisibleBuffers[i].Descriptor.range = sizeof(uBufVS);
+        m_sampleParams.FrameRes.HostVisibleBuffers[i].Descriptor.buffer = m_sampleParams.FrameRes.HostVisibleBuffers[i].Handle;
+        m_sampleParams.FrameRes.HostVisibleBuffers[i].Descriptor.offset = 0;
+        m_sampleParams.FrameRes.HostVisibleBuffers[i].Descriptor.range = sizeof(uBufVS);
     }
 }
 
@@ -303,7 +303,7 @@ void VKHelloFrameBuffering::UpdateHostVisibleBufferData()
 
     // Update uniform buffer data
     // Note: Since we requested a host coherent memory type for the uniform buffer, the write is instantly visible to the GPU
-    memcpy(m_sampleParams.FrameResources.HostVisibleBuffers[m_frameIndex].MappedMemory, &uBufVS, sizeof(uBufVS));
+    memcpy(m_sampleParams.FrameRes.HostVisibleBuffers[m_frameIndex].MappedMemory, &uBufVS, sizeof(uBufVS));
 }
 
 void VKHelloFrameBuffering::CreateDescriptorPool()
@@ -372,8 +372,8 @@ void VKHelloFrameBuffering::AllocateDescriptorSet()
     std::vector<VkDescriptorSetLayout> DescriptorSetLayouts(MAX_FRAME_LAG, m_sampleParams.DescriptorSetLayout);
     allocInfo.pSetLayouts = DescriptorSetLayouts.data();
 
-    m_sampleParams.FrameResources.DescriptorSets.resize(MAX_FRAME_LAG);
-    VK_CHECK_RESULT(vkAllocateDescriptorSets(m_vulkanParams.Device, &allocInfo, m_sampleParams.FrameResources.DescriptorSets.data()));
+    m_sampleParams.FrameRes.DescriptorSets.resize(MAX_FRAME_LAG);
+    VK_CHECK_RESULT(vkAllocateDescriptorSets(m_vulkanParams.Device, &allocInfo, m_sampleParams.FrameRes.DescriptorSets.data()));
 
     //
     // Write the descriptors updating the corresponding descriptor sets.
@@ -389,10 +389,10 @@ void VKHelloFrameBuffering::AllocateDescriptorSet()
         // We need to pass the descriptor set where it is store and 
         // the binding point associated with descriptor in the descriptor set.
         writeDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writeDescriptorSet.dstSet = m_sampleParams.FrameResources.DescriptorSets[i];
+        writeDescriptorSet.dstSet = m_sampleParams.FrameRes.DescriptorSets[i];
         writeDescriptorSet.descriptorCount = 1;
         writeDescriptorSet.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-        writeDescriptorSet.pBufferInfo = &m_sampleParams.FrameResources.HostVisibleBuffers[i].Descriptor;
+        writeDescriptorSet.pBufferInfo = &m_sampleParams.FrameRes.HostVisibleBuffers[i].Descriptor;
         writeDescriptorSet.dstBinding = 0;
 
         vkUpdateDescriptorSets(m_vulkanParams.Device, 1, &writeDescriptorSet, 0, nullptr);
@@ -629,11 +629,11 @@ void VKHelloFrameBuffering::PopulateCommandBuffer(uint32_t currentImageIndex)
     // Set the frame buffer to specify the color attachment (render target) where to draw the current frame.
     renderPassBeginInfo.framebuffer = m_sampleParams.Framebuffers[currentImageIndex];
 
-    VK_CHECK_RESULT(vkBeginCommandBuffer(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], &cmdBufInfo));
+    VK_CHECK_RESULT(vkBeginCommandBuffer(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], &cmdBufInfo));
 
     // Begin the render pass instance.
     // This will clear the color attachment.
-    vkCmdBeginRenderPass(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+    vkCmdBeginRenderPass(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 
     // Update dynamic viewport state
     VkViewport viewport = {};
@@ -641,7 +641,7 @@ void VKHelloFrameBuffering::PopulateCommandBuffer(uint32_t currentImageIndex)
     viewport.width = (float)m_width;
     viewport.minDepth = (float)0.0f;
     viewport.maxDepth = (float)1.0f;
-    vkCmdSetViewport(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], 0, 1, &viewport);
+    vkCmdSetViewport(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], 0, 1, &viewport);
 
     // Update dynamic scissor state
     VkRect2D scissor = {};
@@ -649,35 +649,35 @@ void VKHelloFrameBuffering::PopulateCommandBuffer(uint32_t currentImageIndex)
     scissor.extent.height = m_height;
     scissor.offset.x = 0;
     scissor.offset.y = 0;
-    vkCmdSetScissor(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], 0, 1, &scissor);
+    vkCmdSetScissor(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], 0, 1, &scissor);
 
     // Bind descriptor sets
-    vkCmdBindDescriptorSets(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], 
+    vkCmdBindDescriptorSets(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], 
                             VK_PIPELINE_BIND_POINT_GRAPHICS, 
                             m_sampleParams.PipelineLayout, 
                             0, 1, 
-                            &m_sampleParams.FrameResources.DescriptorSets[m_frameIndex], 
+                            &m_sampleParams.FrameRes.DescriptorSets[m_frameIndex], 
                             0, nullptr);
 
     // Bind the graphics pipeline.
     // The pipeline object contains all states of the graphics pipeline, 
     // binding it will set all the states specified at pipeline creation time
-    vkCmdBindPipeline(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], 
+    vkCmdBindPipeline(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], 
                       VK_PIPELINE_BIND_POINT_GRAPHICS, 
                       m_sampleParams.GraphicsPipeline);
     
     // Bind triangle vertex buffer (contains position and colors)
     VkDeviceSize offsets[1] = { 0 };
-    vkCmdBindVertexBuffers(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], 0, 1, &m_vertices.buffer, offsets);
+    vkCmdBindVertexBuffers(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], 0, 1, &m_vertices.buffer, offsets);
     
     // Draw triangle
-    vkCmdDraw(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex], 3, 1, 0, 0);
+    vkCmdDraw(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex], 3, 1, 0, 0);
     
     // Ending the render pass will add an implicit barrier, transitioning the frame buffer color attachment to
     // VK_IMAGE_LAYOUT_PRESENT_SRC_KHR for presenting it to the windowing system
-    vkCmdEndRenderPass(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex]);
+    vkCmdEndRenderPass(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex]);
     
-     VK_CHECK_RESULT(vkEndCommandBuffer(m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex]));
+     VK_CHECK_RESULT(vkEndCommandBuffer(m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex]));
 }
 
 void VKHelloFrameBuffering::SubmitCommandBuffer()
@@ -690,13 +690,13 @@ void VKHelloFrameBuffering::SubmitCommandBuffer()
     submitInfo.pWaitDstStageMask = &waitStageMask;                                                      // Pointer to the list of pipeline stages that the semaphore waits will occur at
     submitInfo.waitSemaphoreCount = 1;                                                                  // One wait semaphore
     submitInfo.signalSemaphoreCount = 1;                                                                // One signal semaphore
-    submitInfo.pCommandBuffers = &m_sampleParams.FrameResources.GraphicsCommandBuffers[m_frameIndex];   // Command buffers(s) to execute in this batch (submission)
+    submitInfo.pCommandBuffers = &m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex];   // Command buffers(s) to execute in this batch (submission)
     submitInfo.commandBufferCount = 1;                                                                  // One command buffer
 
-    submitInfo.pWaitSemaphores = &m_sampleParams.FrameResources.ImageAvailableSemaphores[m_frameIndex];          // Semaphore(s) to wait upon before the submitted command buffers start executing
-    submitInfo.pSignalSemaphores = &m_sampleParams.FrameResources.RenderingFinishedSemaphores[m_frameIndex];     // Semaphore(s) to be signaled when command buffers have completed
+    submitInfo.pWaitSemaphores = &m_sampleParams.FrameRes.ImageAvailableSemaphores[m_frameIndex];          // Semaphore(s) to wait upon before the submitted command buffers start executing
+    submitInfo.pSignalSemaphores = &m_sampleParams.FrameRes.RenderingFinishedSemaphores[m_frameIndex];     // Semaphore(s) to be signaled when command buffers have completed
 
-    VK_CHECK_RESULT(vkQueueSubmit(m_vulkanParams.GraphicsQueue.Handle, 1, &submitInfo, m_sampleParams.FrameResources.Fences[m_frameIndex]));
+    VK_CHECK_RESULT(vkQueueSubmit(m_vulkanParams.GraphicsQueue.Handle, 1, &submitInfo, m_sampleParams.FrameRes.Fences[m_frameIndex]));
 }
 
 void VKHelloFrameBuffering::PresentImage(uint32_t currentImageIndex)
@@ -711,10 +711,10 @@ void VKHelloFrameBuffering::PresentImage(uint32_t currentImageIndex)
     presentInfo.pSwapchains = &m_vulkanParams.SwapChain.Handle;
     presentInfo.pImageIndices = &currentImageIndex;
     // Check if a wait semaphore has been specified to wait for before presenting the image
-    if (m_sampleParams.FrameResources.RenderingFinishedSemaphores[m_frameIndex] != VK_NULL_HANDLE)
+    if (m_sampleParams.FrameRes.RenderingFinishedSemaphores[m_frameIndex] != VK_NULL_HANDLE)
     {
         presentInfo.waitSemaphoreCount = 1;
-        presentInfo.pWaitSemaphores = &m_sampleParams.FrameResources.RenderingFinishedSemaphores[m_frameIndex];
+        presentInfo.pWaitSemaphores = &m_sampleParams.FrameRes.RenderingFinishedSemaphores[m_frameIndex];
     }
 
     VkResult present = vkQueuePresentKHR(m_vulkanParams.GraphicsQueue.Handle, &presentInfo);
