@@ -687,14 +687,14 @@ void VKHelloFrameBuffering::SubmitCommandBuffer()
     // The submit info structure specifies a command buffer queue submission batch
     VkSubmitInfo submitInfo = {};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-    submitInfo.pWaitDstStageMask = &waitStageMask;                                                      // Pointer to the list of pipeline stages that the semaphore waits will occur at
-    submitInfo.waitSemaphoreCount = 1;                                                                  // One wait semaphore
-    submitInfo.signalSemaphoreCount = 1;                                                                // One signal semaphore
+    submitInfo.pWaitDstStageMask = &waitStageMask;                                                // Pointer to the list of pipeline stages that the semaphore waits will occur at
+    submitInfo.waitSemaphoreCount = 1;                                                            // One wait semaphore
+    submitInfo.signalSemaphoreCount = 1;                                                          // One signal semaphore
     submitInfo.pCommandBuffers = &m_sampleParams.FrameRes.GraphicsCommandBuffers[m_frameIndex];   // Command buffers(s) to execute in this batch (submission)
-    submitInfo.commandBufferCount = 1;                                                                  // One command buffer
+    submitInfo.commandBufferCount = 1;                                                            // One command buffer
 
-    submitInfo.pWaitSemaphores = &m_sampleParams.FrameRes.ImageAvailableSemaphores[m_frameIndex];          // Semaphore(s) to wait upon before the submitted command buffers start executing
-    submitInfo.pSignalSemaphores = &m_sampleParams.FrameRes.RenderingFinishedSemaphores[m_frameIndex];     // Semaphore(s) to be signaled when command buffers have completed
+    submitInfo.pWaitSemaphores = &m_sampleParams.FrameRes.ImageAvailableSemaphores[m_frameIndex];        // Semaphore(s) to wait upon before the submitted command buffers start executing
+    submitInfo.pSignalSemaphores = &m_sampleParams.FrameRes.RenderingFinishedSemaphores[m_frameIndex];   // Semaphore(s) to be signaled when command buffers have completed
 
     VK_CHECK_RESULT(vkQueueSubmit(m_vulkanParams.GraphicsQueue.Handle, 1, &submitInfo, m_sampleParams.FrameRes.Fences[m_frameIndex]));
 }
