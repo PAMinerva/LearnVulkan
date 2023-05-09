@@ -61,7 +61,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
  </tr>
   <tr>
   <td><img src="images/vkHelloFrameBuffering.gif"></td>
-  <td><img src="images/vkHelloTextures.gif"></td>
+  <td><img src="images/VKHelloTextures.gif"></td>
   <!-- <td> </td>  -->
  </tr>
 </table>
