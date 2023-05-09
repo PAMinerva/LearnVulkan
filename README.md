@@ -56,10 +56,12 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
  </tr>
  <tr>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01E-VkHelloFrameBuffering">01.E - Hello Frame Buffering</a></td>
+  <td>01.E - Hello Textures (WIP)</td>
   <!-- <td> </td>  -->
  </tr>
   <tr>
   <td><img src="images/vkHelloFrameBuffering.gif"></td>
+  <td><img src="images/vkHelloTextures.gif"></td>
   <!-- <td> </td>  -->
  </tr>
 </table>
