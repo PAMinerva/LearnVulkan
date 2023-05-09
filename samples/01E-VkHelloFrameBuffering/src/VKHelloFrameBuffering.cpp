@@ -56,8 +56,8 @@ void VKHelloFrameBuffering::OnUpdate()
 void VKHelloFrameBuffering::OnRender()
 {
     // Ensure no more than MAX_FRAME_LAG frames are queued.
-    vkWaitForFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameRes.Fences[m_frameIndex], VK_TRUE, UINT64_MAX);
-    vkResetFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameRes.Fences[m_frameIndex]);
+    VK_CHECK_RESULT(vkWaitForFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameRes.Fences[m_frameIndex], VK_TRUE, UINT64_MAX));
+    VK_CHECK_RESULT(vkResetFences(m_vulkanParams.Device, 1, &m_sampleParams.FrameRes.Fences[m_frameIndex]));
 
     // Get the index of the next available image in the swap chain
     uint32_t imageIndex;
