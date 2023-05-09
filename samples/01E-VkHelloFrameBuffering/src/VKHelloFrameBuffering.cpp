@@ -258,7 +258,7 @@ void VKHelloFrameBuffering::CreateHostVisibleBuffers()
         // enough to hold the buffer.
         // VK_MEMORY_PROPERTY_HOST_COHERENT_BIT makes sure writes performed by the host (application)
         // will be directly visible to the device without requiring the explicit flushing of cached memory.
-        vkGetBufferMemoryRequirements(m_vulkanParams.Device,m_sampleParams.FrameRes.HostVisibleBuffers[i].Handle, &memReqs);
+        vkGetBufferMemoryRequirements(m_vulkanParams.Device, m_sampleParams.FrameRes.HostVisibleBuffers[i].Handle, &memReqs);
         memAlloc.allocationSize = memReqs.size;
         memAlloc.memoryTypeIndex = GetMemoryTypeIndex(memReqs.memoryTypeBits, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, m_deviceMemoryProperties);
         VK_CHECK_RESULT(vkAllocateMemory(m_vulkanParams.Device, &memAlloc, nullptr, &m_sampleParams.FrameRes.HostVisibleBuffers[i].Memory));
