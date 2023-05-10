@@ -188,20 +188,18 @@ void VKHelloTextures::CreateVertexBuffer()
     //  v1 ---- v2
     //
     // Triangle in texture space
-    //   __________________ X
-    //   |        v0
-    //   |       /  \
-    //   |      /    \
-    //   |     /      \
-    //   |    /        \
-    //   |  v1__________v2
-    //   Y
+    // 
+    //   Y    v0
+    //   |   /  \
+    //   |  /    \
+    //   | /      \
+    //   |v1_______\v2_ X
     //
     std::vector<Vertex> vertexBuffer =
     {
-        { { 0.0f, 0.25f * m_aspectRatio, 0.0f },    { 0.5f, 0.0f } },  // v0
-        { { -0.25f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 1.0f } },  // v1
-        { { 0.25f, -0.25f * m_aspectRatio, 0.0f },  { 1.0f, 1.0f } }   // v2
+        { { 0.0f, 0.25f * m_aspectRatio, 0.0f },    { 0.5f, 1.0f } },  // v0
+        { { -0.25f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 0.0f } },  // v1
+        { { 0.25f, -0.25f * m_aspectRatio, 0.0f },  { 1.0f, 0.0f } }   // v2
     };
     uint32_t vertexBufferSize = static_cast<uint32_t>(vertexBuffer.size()) * sizeof(Vertex);
 
