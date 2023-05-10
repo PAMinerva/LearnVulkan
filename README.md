@@ -37,7 +37,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
 
 <table>
  <tr>
-  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01A-VkHelloWindow">01.A - Hello Window</a></td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01A-VkHelloWindow">01.A - Hello Windo</a></td>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01B-VkHelloTriangle">01.B - Hello Triangle</a></td>
  </tr>
  <tr>
@@ -56,7 +56,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
  </tr>
  <tr>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01E-VkHelloFrameBuffering">01.E - Hello Frame Buffering</a></td>
-  <td>01.F - Hello Textures (WIP)</td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/01F-VkHelloTextures">01.F - Hello Textures</a></td>
   <!-- <td> </td>  -->
  </tr>
   <tr>
