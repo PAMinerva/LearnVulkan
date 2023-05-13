@@ -98,6 +98,14 @@ void VKHelloTextures::OnDestroy()
     vkDestroyBuffer(m_vulkanParams.Device, m_vertices.buffer, nullptr);
     vkFreeMemory(m_vulkanParams.Device, m_vertices.memory, nullptr);
 
+    // Destroy texture resources
+    vkDestroyBuffer(m_vulkanParams.Device, m_texture.StagingBuffer.Handle, nullptr);
+    vkFreeMemory(m_vulkanParams.Device, m_texture.StagingBuffer.Memory, nullptr);
+    vkDestroyImageView(m_vulkanParams.Device, m_texture.TextureImage.Descriptor.imageView, nullptr);
+    vkDestroyImage(m_vulkanParams.Device, m_texture.TextureImage.Handle, nullptr);
+    vkFreeMemory(m_vulkanParams.Device, m_texture.TextureImage.Memory, nullptr);
+    vkDestroySampler(m_vulkanParams.Device, m_texture.TextureImage.Descriptor.sampler, nullptr);
+
     // Destroy\Unmap frame resources
     for (uint32_t i = 0; i < MAX_FRAME_LAG; i++)
     {
