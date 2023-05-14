@@ -66,8 +66,8 @@ private:
         ImageParameters  TextureImage;     // Texture image
 
         // Texture and texel dimensions
-        static const uint32_t TextureWidth = 256;
-        static const uint32_t TextureHeight = 256;
-        static const uint32_t TextureTexelSize = 4;  // The number of bytes used to represent a texel in the texture.
+        const uint32_t TextureWidth = 256;
+        const uint32_t TextureHeight = 256;
+        const uint32_t TextureTexelSize = 4;  // The number of bytes used to represent a texel in the texture.
     } m_texture;
 };

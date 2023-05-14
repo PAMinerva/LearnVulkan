@@ -348,20 +348,20 @@ void VKHelloTextures::CreateStagingBuffer()
 
 std::vector<uint8_t> VKHelloTextures::GenerateTextureData()
 {
-    const UINT rowPitch = m_texture.TextureWidth * m_texture.TextureTexelSize;
-    const UINT cellPitch = rowPitch >> 3;                        // The width of a cell in the checkerboard texture.
-    const UINT cellHeight = m_texture.TextureWidth >> 3;         // The height of a cell in the checkerboard texture.
-    const UINT textureSize = rowPitch * m_texture.TextureHeight;
+    const size_t rowPitch = m_texture.TextureWidth * m_texture.TextureTexelSize;
+    const size_t cellPitch = rowPitch >> 3;                        // The width of a cell in the checkerboard texture.
+    const size_t cellHeight = m_texture.TextureWidth >> 3;         // The height of a cell in the checkerboard texture.
+    const size_t textureSize = rowPitch * m_texture.TextureHeight;
  
-    std::vector<UINT8> data(textureSize);
-    UINT8* pData = &data[0];
+    std::vector<uint8_t> data(textureSize);
+    uint8_t* pData = &data[0];
  
-    for (UINT n = 0; n < textureSize; n += m_texture.TextureTexelSize)
+    for (size_t n = 0; n < textureSize; n += m_texture.TextureTexelSize)
     {
-        UINT x = n % rowPitch;
-        UINT y = n / rowPitch;
-        UINT i = x / cellPitch;
-        UINT j = y / cellHeight;
+        size_t x = n % rowPitch;
+        size_t y = n / rowPitch;
+        size_t i = x / cellPitch;
+        size_t j = y / cellHeight;
  
         if (i % 2 == j % 2)
         {
