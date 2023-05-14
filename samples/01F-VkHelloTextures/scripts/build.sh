@@ -20,6 +20,6 @@ echo Compiling shader...
 
 echo Building project...
 
-g++ -g src/*.cpp -o 01E-VkHelloFrameBuffering.out $includes $defines $links
+g++ -g src/*.cpp -o 01E-VkHelloTextures.out $includes $defines $links
 
 rm -f *.o
