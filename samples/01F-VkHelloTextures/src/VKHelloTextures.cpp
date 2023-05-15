@@ -434,7 +434,7 @@ void VKHelloTextures::CreateTexture()
                                 VK_ACCESS_NONE, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, 
                                 VK_PIPELINE_STAGE_TRANSFER_BIT);
 
-        // Copy from staging buffer to texture image
+        // Copy from staging buffer to texture in local device memory
         VkBufferImageCopy copyRegion = {};
         copyRegion.bufferOffset = 0;
         copyRegion.bufferRowLength = m_texture.TextureWidth;
