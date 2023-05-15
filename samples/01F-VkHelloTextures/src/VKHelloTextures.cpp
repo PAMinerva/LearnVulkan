@@ -309,8 +309,6 @@ void VKHelloTextures::CreateStagingBuffer()
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
     bufferInfo.size = m_texture.TextureWidth * m_texture.TextureHeight * m_texture.TextureTexelSize,
     bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-
     VK_CHECK_RESULT(vkCreateBuffer(m_vulkanParams.Device, &bufferInfo, nullptr, &m_texture.StagingBuffer.Handle));
 
     // Used to request an allocation of a specific size from a certain memory type.
