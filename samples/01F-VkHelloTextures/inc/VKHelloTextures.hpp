@@ -30,11 +30,11 @@ private:
     void CreatePipelineLayout();          // Create a pipeline layout
     void CreatePipelineObjects();         // Create a pipeline object
 
-    void UpdateHostVisibleBufferData();        // Update buffer data
+    void UpdateHostVisibleBufferData();   // Update buffer data
 
-    void CreateTexture();                      // Create a texture
-    void CreateStagingBuffer();                // Create a staging buffer
     std::vector<uint8_t> GenerateTextureData();  // Generate texture data
+    void CreateStagingBuffer();                  // Create a staging buffer
+    void CreateTexture();                        // Create a texture
 
     // For simplicity we use the same uniform block layout as in the vertex shader:
     //
