@@ -401,7 +401,7 @@ void VKHelloTextures::CreateTexture()
         imageCreateInfo.samples = VK_SAMPLE_COUNT_1_BIT;
         imageCreateInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
         imageCreateInfo.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-        imageCreateInfo.initialLayout = VK_IMAGE_LAYOUT_PREINITIALIZED;
+        imageCreateInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
 
         VK_CHECK_RESULT(vkCreateImage(m_vulkanParams.Device, &imageCreateInfo, nullptr, &m_texture.TextureImage.Handle));
 
@@ -425,12 +425,13 @@ void VKHelloTextures::CreateTexture()
         // We need to record some commands to copy staging buffer data to texture image in local device memory
         VkCommandBufferBeginInfo cmdBufferInfo = {};
         cmdBufferInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+        cmdBufferInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
         vkBeginCommandBuffer(m_sampleParams.FrameRes.GraphicsCommandBuffers[0], &cmdBufferInfo);
 
         // Transition the image layout to provide optimal performance for transfering operations that use the image as a destination
         TransitionImageLayout(m_sampleParams.FrameRes.GraphicsCommandBuffers[0],
                                 m_texture.TextureImage.Handle, VK_IMAGE_ASPECT_COLOR_BIT, 
-                                VK_IMAGE_LAYOUT_PREINITIALIZED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+                                VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
                                 VK_ACCESS_NONE, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, 
                                 VK_PIPELINE_STAGE_TRANSFER_BIT);
 
@@ -839,7 +840,6 @@ void VKHelloTextures::PopulateCommandBuffer(uint32_t currentImageIndex)
 {
     VkCommandBufferBeginInfo cmdBufInfo = {};
     cmdBufInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-    cmdBufInfo.pNext = nullptr;
     cmdBufInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
 
     // We use a single color attachment that is cleared at the start of the subpass.
@@ -848,7 +848,6 @@ void VKHelloTextures::PopulateCommandBuffer(uint32_t currentImageIndex)
 
     VkRenderPassBeginInfo renderPassBeginInfo = {};
     renderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-    renderPassBeginInfo.pNext = nullptr;
     // Set the render area that is affected by the render pass instance.
     renderPassBeginInfo.renderArea.offset.x = 0;
     renderPassBeginInfo.renderArea.offset.y = 0;
