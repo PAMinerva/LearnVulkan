@@ -163,7 +163,6 @@ void TransitionImageLayout(VkCommandBuffer cmd,
 
     switch (newImageLayout) {
     case VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL:
-        /* Make sure anything that was copying from this image has completed */
         imageMemoryBarrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
         break;
 
