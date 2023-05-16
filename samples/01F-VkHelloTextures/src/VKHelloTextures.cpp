@@ -438,8 +438,8 @@ void VKHelloTextures::CreateTexture()
         // Copy from staging buffer to texture in local device memory
         VkBufferImageCopy copyRegion = {};
         copyRegion.bufferOffset = 0;
-        copyRegion.bufferRowLength = m_texture.TextureWidth;
-        copyRegion.bufferImageHeight = m_texture.TextureHeight;
+        copyRegion.bufferRowLength = 0;
+        copyRegion.bufferImageHeight = 0;
         copyRegion.imageSubresource = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1};
         copyRegion.imageOffset = {0, 0, 0};
         copyRegion.imageExtent = {m_texture.TextureWidth, m_texture.TextureHeight, 1};
@@ -490,7 +490,7 @@ void VKHelloTextures::CreateTexture()
                 VK_COMPONENT_SWIZZLE_IDENTITY,  // B
                 VK_COMPONENT_SWIZZLE_IDENTITY,  // A
             };
-        viewInfo.subresourceRange = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1}; // The texture includes one mipmap level (index 0) and one array layer (index 0)
+        viewInfo.subresourceRange = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1}; // The texture stores colors and includes one mipmap level (index 0) and one array layer (index 0)
 
         // Create a sampler
         VK_CHECK_RESULT(vkCreateSampler(m_vulkanParams.Device, &samplerInfo, NULL, &m_texture.TextureImage.Descriptor.sampler));
