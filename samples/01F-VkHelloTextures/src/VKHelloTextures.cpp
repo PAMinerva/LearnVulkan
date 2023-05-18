@@ -402,6 +402,7 @@ void VKHelloTextures::CreateTexture()
         imageCreateInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
         imageCreateInfo.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
         imageCreateInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+        imageCreateInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
         VK_CHECK_RESULT(vkCreateImage(m_vulkanParams.Device, &imageCreateInfo, nullptr, &m_texture.TextureImage.Handle));
 
@@ -568,6 +569,7 @@ void VKHelloTextures::CreateDescriptorSetLayout()
     layoutBinding[0].stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
     layoutBinding[0].pImmutableSamplers = nullptr;
 
+    // Binding 1: Combined image sampler (Fragment shader)
     layoutBinding[1].binding = 1;
     layoutBinding[1].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
     layoutBinding[1].descriptorCount = 1;
@@ -616,6 +618,7 @@ void VKHelloTextures::AllocateDescriptorSet()
         writeDescriptorSet[0].pBufferInfo = &m_sampleParams.FrameRes.HostVisibleBuffers[i].Descriptor;
         writeDescriptorSet[0].dstBinding = 0;
 
+        // Write the descriptor of the combined image sampler.
         writeDescriptorSet[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
         writeDescriptorSet[1].dstSet = m_sampleParams.FrameRes.DescriptorSets[i];
         writeDescriptorSet[1].descriptorCount = 1;
