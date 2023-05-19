@@ -35,7 +35,7 @@ void VKHelloTextures::SetupPipeline()
     CreateTexture();
     CreateDescriptorPool();
     CreateDescriptorSetLayout();
-    AllocateDescriptorSet();
+    AllocateDescriptorSets();
     CreatePipelineLayout();
     CreatePipelineObjects();
 
@@ -254,8 +254,8 @@ void VKHelloTextures::CreateVertexBuffer()
 void VKHelloTextures::CreateHostVisibleBuffers()
 {
     //
-    // Create a buffer in host-visible device memory
-    // since it needs to be updated from the CPU on a per-frame basis.
+    // Create buffers in host-visible device memory
+    // since they needs to be updated from the CPU on a per-frame basis.
     //
     
     // Used to request an allocation of a specific size from a certain memory type.
@@ -585,7 +585,7 @@ void VKHelloTextures::CreateDescriptorSetLayout()
     VK_CHECK_RESULT(vkCreateDescriptorSetLayout(m_vulkanParams.Device, &descriptorLayout, nullptr, &m_sampleParams.DescriptorSetLayout));
 }
 
-void VKHelloTextures::AllocateDescriptorSet()
+void VKHelloTextures::AllocateDescriptorSets()
 {
     // Allocate MAX_FRAME_LAG descriptor sets from the global descriptor pool.
     // Use the descriptor set layout to calculate the amount on memory required to store the descriptor sets.
