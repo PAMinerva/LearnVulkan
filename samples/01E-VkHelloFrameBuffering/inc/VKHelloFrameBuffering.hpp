@@ -26,7 +26,7 @@ private:
     void CreateHostVisibleBuffers();      // Create a buffer in host-visible memory
     void CreateDescriptorPool();          // Create a descriptor pool
     void CreateDescriptorSetLayout();     // Create a descriptor set layout
-    void AllocateDescriptorSet();         // Allocate a descriptor set
+    void AllocateDescriptorSets();         // Allocate a descriptor set
     void CreatePipelineLayout();          // Create a pipeline layout
     void CreatePipelineObjects();         // Create a pipeline object
 

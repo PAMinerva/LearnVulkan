@@ -33,7 +33,7 @@ void VKHelloFrameBuffering::SetupPipeline()
     CreateHostVisibleBuffers();
     CreateDescriptorPool();
     CreateDescriptorSetLayout();
-    AllocateDescriptorSet();
+    AllocateDescriptorSets();
     CreatePipelineLayout();
     CreatePipelineObjects();
     m_initialized = true;
@@ -234,8 +234,8 @@ void VKHelloFrameBuffering::CreateVertexBuffer()
 void VKHelloFrameBuffering::CreateHostVisibleBuffers()
 {
     //
-    // Create a buffer in host-visible device memory
-    // since it needs to be updated from the CPU on a per-frame basis.
+    // Create buffers in host-visible device memory
+    // since they need to be updated from the CPU on a per-frame basis.
     //
     
     // Used to request an allocation of a specific size from a certain memory type.
@@ -243,7 +243,7 @@ void VKHelloFrameBuffering::CreateHostVisibleBuffers()
     memAlloc.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     VkMemoryRequirements memReqs;
     
-    // Create the buffer object
+    // Create buffer object
     VkBufferCreateInfo bufferInfo = {};
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
     bufferInfo.size = sizeof(uBufVS);
@@ -361,7 +361,7 @@ void VKHelloFrameBuffering::CreateDescriptorSetLayout()
     VK_CHECK_RESULT(vkCreateDescriptorSetLayout(m_vulkanParams.Device, &descriptorLayout, nullptr, &m_sampleParams.DescriptorSetLayout));
 }
 
-void VKHelloFrameBuffering::AllocateDescriptorSet()
+void VKHelloFrameBuffering::AllocateDescriptorSets()
 {
     // Allocate MAX_FRAME_LAG descriptor sets from the global descriptor pool.
     // Use the descriptor set layout to calculate the amount on memory required to store the descriptor sets.
