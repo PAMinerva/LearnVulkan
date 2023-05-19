@@ -255,7 +255,7 @@ void VKHelloTextures::CreateHostVisibleBuffers()
 {
     //
     // Create buffers in host-visible device memory
-    // since they needs to be updated from the CPU on a per-frame basis.
+    // since they need to be updated from the CPU on a per-frame basis.
     //
     
     // Used to request an allocation of a specific size from a certain memory type.
