@@ -13,7 +13,7 @@
             "defines": ["VK_USE_PLATFORM_WIN32_KHR"],
             "includePath": [
                 "${workspaceFolder}/**",
-                "${VULKAN_SDK}/Include/vulkan"
+                "${workspaceFolder}/../../external/include/vulkan"
             ]
         }
     ],

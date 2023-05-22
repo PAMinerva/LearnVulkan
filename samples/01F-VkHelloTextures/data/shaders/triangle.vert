@@ -11,7 +11,7 @@ layout (location = 0) out vec4 outTexCoord;
 
 void main() 
 {
-	outTexCoord = inTexCoord;                              // Pass color to the next stage
-	gl_Position = vec4(inPos, 1.0) + uBuf.displacement;    // Shift vertex position
-	gl_Position.y = -gl_Position.y;	                       // Flip y-coords.
+    gl_Position = vec4(inPos, 1.0) + uBuf.displacement;    // Shift vertex position
+    gl_Position.y = -gl_Position.y;	                       // Flip y-coords.
+    outTexCoord = inTexCoord;                              // Pass texel coordinates to the next stage
 }
