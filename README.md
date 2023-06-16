@@ -65,10 +65,12 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
  </tr>
  <tr>
   <td>01.G - Hello Transformations</td>
+  <td>01.H - Hello Lighting</td>
   <!-- <td> </td>  -->
  </tr>
   <tr>
   <td><img src="images/vkHelloTransformations.gif"></td>
+  <td></td>
   <!-- <td> </td>  -->
  </tr>
 </table>
