@@ -64,7 +64,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
   <tr>
-  <td>01.G - Hello Transformations</td>
+  <td>01.G - Hello Transformations (WIP)</td>
   <td>01.H - Hello Lighting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
   <!-- <td> </td>  -->
  </tr>
