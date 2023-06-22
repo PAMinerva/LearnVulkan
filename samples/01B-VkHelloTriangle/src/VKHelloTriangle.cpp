@@ -499,7 +499,7 @@ void VKHelloTriangle::SubmitCommandBuffer(uint32_t currentBufferIndex)
 
 void VKHelloTriangle::PresentImage(uint32_t imageIndex)
 {
-    // Present the current buffer to the swap chain.
+    // Present the current image to the presentation engine.
     // Pass the semaphore from the submit info as the wait semaphore for swap chain presentation.
     // This ensures that the image is not presented to the windowing system until all commands have been executed.
     VkPresentInfoKHR presentInfo = {};
