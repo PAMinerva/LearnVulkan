@@ -4,7 +4,7 @@ This repository hosts the code of the samples for the tutorial series you can fi
 
 [Learn Vulkan from code samples](https://paminerva.github.io/docs/LearnVulkan/LearnVulkan)
 
-Note: All code samples are licensed under the terms of the MIT license, while all content in the wiki, including images and markdown code of the tutorials, is under exclusive copyright.
+Note: All code samples are licensed under the terms of the MIT license, while all content in the wiki, including images and Markdown code of the tutorials, is under exclusive copyright.
 
 <br>
 
