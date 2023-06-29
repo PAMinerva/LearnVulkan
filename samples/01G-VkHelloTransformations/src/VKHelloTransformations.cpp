@@ -413,10 +413,10 @@ void VKHelloTransformations::CreateHostVisibleDynamicBuffers()
         // Store information needed to write\update the corresponding descriptor (dynamic uniform buffer) in the descriptor set later.
         // In this case:
         // offset is the base offset (into the buffer) from which dynamic offsets will be applied
-        // range is the static size used for all dynamic offsets; describe a region of m_dynamicUBOAlignment bytes in the buffer, depending on the dynamic offset provided
+        // range is the static size used for all dynamic offsets; describe a region of sizeof(glm::mat4) bytes in the buffer, depending on the dynamic offset provided
         m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Descriptor.buffer = m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Handle;
         m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Descriptor.offset = 0;
-        m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Descriptor.range = m_dynamicUBOAlignment;
+        m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Descriptor.range = sizeof(glm::mat4);
 
         // Save buffer size for later use
         m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Size = dynBufferSize;
