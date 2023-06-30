@@ -75,7 +75,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
  </tr>
   <tr>
   <td><img src="images/vkHelloTransformations.gif"></td>
-  <td></td>
+  <td><img src="images/vkHelloLighting.gif"></td>
   <!-- <td> </td>  -->
  </tr>
 </table>
