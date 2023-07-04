@@ -215,7 +215,7 @@ void VKHelloTransformations::OnResize()
     UpdateHostVisibleBufferData();
 }
 
-// Create a vertex buffer that describe a single triangle
+// Create vertex and index buffers
 void VKHelloTransformations::CreateVertexBuffer()
 {
     // While it's fine for an example application to request small individual memory allocations, that is not
