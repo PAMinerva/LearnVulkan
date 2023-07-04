@@ -269,7 +269,7 @@ void VKHelloLighting::CreateVertexBuffer()
         {{1.0f, -1.0f, 1.0f},   {0.0f, -1.0f, 0.0f}},
         {{-1.0f, -1.0f, 1.0f},  {0.0f, -1.0f, 0.0f}},
         {{-1.0f, -1.0f, -1.0f}, {0.0f, -1.0f, 0.0f}},
-        {{1.0f, -1.0f, -1.0f},  {0.0f, -1.0f, 0.0f}},
+        {{1.0f, -1.0f, -1.0f},  {0.0f, -1.0f, 0.0f}}
     };
     size_t vertexBufferSize = static_cast<size_t>(cubeVertices.size()) * sizeof(Vertex);
 
