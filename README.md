@@ -79,7 +79,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
   <tr>
-  <td>02.A - Alpha Blending</td>
+  <td>02.A - Alpha Blending (WIP)</td>
   <!-- <td> </td>  -->
  </tr>
  <tr>
