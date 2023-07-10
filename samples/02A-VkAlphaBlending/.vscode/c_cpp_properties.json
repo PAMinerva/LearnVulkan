@@ -14,10 +14,8 @@
             "defines": ["VK_USE_PLATFORM_WIN32_KHR"],
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/external/include",
-                "${workspaceFolder}/external/include/vulkan"
-                //"${workspaceFolder}/../../external/include",
-                //"${workspaceFolder}/../../external/include/vulkan"
+                "${workspaceFolder}/../../external/include",
+                "${workspaceFolder}/../../external/include/vulkan"
             ]
         }
     ],
