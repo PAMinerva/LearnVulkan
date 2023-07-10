@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": ["VK_USE_PLATFORM_XLIB_KHR"],
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../external/include",
+                "${workspaceFolder}/../../external/include/vulkan"
+            ]
+        },
+        {
+            "name": "Win32",
+            "defines": ["VK_USE_PLATFORM_WIN32_KHR"],
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/external/include",
+                "${workspaceFolder}/external/include/vulkan"
+                //"${workspaceFolder}/../../external/include",
+                //"${workspaceFolder}/../../external/include/vulkan"
+            ]
+        }
+    ],
+    "version": 4
+}

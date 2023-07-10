@@ -79,7 +79,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
   <tr>
-  <td>02.A - Alpha Blending (WIP)</td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/02A-VkAlphaBlending">02.A - Alpha Blending</a></td>
   <!-- <td> </td>  -->
  </tr>
  <tr>
