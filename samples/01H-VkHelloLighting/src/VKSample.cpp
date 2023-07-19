@@ -499,6 +499,7 @@ void VKSample::CreateDepthStencilImage(uint32_t width, uint32_t height)
         if (formatProps.optimalTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT)
         {
             depthFormat = format;
+            break;
         }
     }
 
