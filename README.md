@@ -6,11 +6,6 @@ This repository hosts the code of the samples for the tutorial series you can fi
 
 <br>
 
-## License
-All code samples are licensed under the terms of the MIT license, while all content in the wiki, including images and Markdown code of the tutorials, is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
-
-<br>
-
 ## Repository Dependencies
 
 - Vulkan SDK
@@ -92,6 +87,11 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
 </table>
 
 <br>
+
+<br>
+
+## License
+All code samples are licensed under the terms of the MIT license, while all content in the wiki, including images and Markdown code of the tutorials, is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
 
 <br>
 
