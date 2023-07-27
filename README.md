@@ -75,7 +75,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
  </tr>
   <tr>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/02A-VkAlphaBlending">02.A - Alpha Blending</a></td>
-  <td>02.B - Stenciling (WIP)</td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/02B-VkStenciling">02.B - Stenciling</a></td>
   <!-- <td> </td>  -->
  </tr>
  <tr>
