@@ -84,7 +84,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
   <tr>
-  <td>02.A - Geometry Shader (WIP)</td>
+  <td>02.C - Geometry Shader (WIP)</td>
   <!-- <td> </td>  -->
  </tr>
  <tr>
