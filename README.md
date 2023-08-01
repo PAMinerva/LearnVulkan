@@ -73,7 +73,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <td><img src="images/vkHelloLighting.gif"></td>
   <!-- <td> </td>  -->
  </tr>
-  <tr>
+ <tr>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/02A-VkAlphaBlending">02.A - Alpha Blending</a></td>
   <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/02B-VkStenciling">02.B - Stenciling</a></td>
   <!-- <td> </td>  -->
@@ -83,7 +83,14 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <td><img src="images/vkStenciling.gif"></td>
   <!-- <td> </td>  -->
  </tr>
+  <tr>
+  <td>02.A - Geometry Shader (WIP)</td>
+  <!-- <td> </td>  -->
+ </tr>
  <tr>
+  <td><img src="images/vkGeometryShader.gif"></td>
+  <!-- <td> </td>  -->
+ </tr>
 </table>
 
 <br>
