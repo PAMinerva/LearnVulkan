@@ -84,7 +84,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
   <tr>
-  <td>02.C - Geometry Shader (WIP)</td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/02C-VkGeometryShader">02.C - Geometry Shader</a></td>
   <!-- <td> </td>  -->
  </tr>
  <tr>
