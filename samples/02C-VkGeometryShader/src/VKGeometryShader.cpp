@@ -81,6 +81,10 @@ void VKGeometryShader::EnableFeatures(VkPhysicalDeviceFeatures& features)
     {
         m_vulkanParams.EnabledFeatures.geometryShader = VK_TRUE;
     }
+    else
+    {
+        assert(!"Selected device does not support geometry shaders!");
+    }
 }
 
 // Update frame-based values.
