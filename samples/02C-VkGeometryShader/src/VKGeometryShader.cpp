@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "VKApplication.hpp"
-#include "VKStenciling.hpp"
+#include "VKGeometryShader.hpp"
 #include "VKDebug.hpp"
 #include "MathHelper.hpp"
 

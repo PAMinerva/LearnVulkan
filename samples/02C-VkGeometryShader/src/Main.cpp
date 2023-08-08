@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "VKApplication.hpp"
-#include "VKStenciling.hpp"
+#include "VKGeometryShader.hpp"
 
 #if defined (_WIN32)
 _Use_decl_annotations_
