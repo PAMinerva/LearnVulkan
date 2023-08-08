@@ -16,11 +16,13 @@ links="-lX11 -lvulkan"
 echo Compiling shader...
 
 /../../bin/glslangValidator -V -g ./data/shaders/main.vert -o ./data/shaders/main.vert.spv
+/../../bin/glslangValidator -V -g ./data/shaders/passthrough.vert -o ./data/shaders/passthrough.vert.spv
+/../../bin/glslangValidator -V -g ./data/shaders/main.geom -o ./data/shaders/main.geom.spv
 /../../bin/glslangValidator -V -g ./data/shaders/solid.frag -o ./data/shaders/solid.frag.spv
 /../../bin/glslangValidator -V -g ./data/shaders/lambertian.frag -o ./data/shaders/lambertian.frag.spv
 
 echo Building project...
 
-g++ -g src/*.cpp -o 01H-VkHelloLighting.out $includes $defines $links
+g++ -g src/*.cpp -o 02C-VkGeometryShader.out $includes $defines $links
 
 rm -f *.o
