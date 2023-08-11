@@ -249,8 +249,10 @@ void VKGeometryShader::CreateVertexBuffer()
 
     ComputeSphere(vertices, indices, 5, 20);
 
-    size_t vertexBufferSize = m_meshObjects["sphere"].vertexCount = static_cast<size_t>(vertices.size()) * sizeof(Vertex);
-    size_t indexBufferSize = m_meshObjects["sphere"].indexCount = static_cast<size_t>(indices.size()) * sizeof(uint16_t);
+    m_meshObjects["sphere"].vertexCount = static_cast<uint32_t>(vertices.size());
+    m_meshObjects["sphere"].indexCount = static_cast<uint32_t>(indices.size());
+    size_t vertexBufferSize = static_cast<size_t>(vertices.size()) * sizeof(Vertex);
+    size_t indexBufferSize = static_cast<size_t>(indices.size()) * sizeof(uint16_t);
 
     //
     // Create the vertex and index buffers in host-visible device memory for convenience. 
