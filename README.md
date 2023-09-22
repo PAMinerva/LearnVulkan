@@ -94,7 +94,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
   <tr>
-  <td>02.E - Tessellation (WIP</td>
+  <td>02.E - Tessellation (WIP)</td>
   <!-- <td> </td>  -->
  </tr>
  <tr>
