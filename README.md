@@ -93,6 +93,14 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <td><img src="images/vkTransformFeedback.gif"></td>
   <!-- <td> </td>  -->
  </tr>
+  <tr>
+  <td>02.E - Tessellation (WIP)</td>
+  <!-- <td> </td>  -->
+ </tr>
+ <tr>
+  <td><img src="images/vkTessellation.png"></td>
+  <!-- <td> </td>  -->
+ </tr>
 </table>
 
 <br>
