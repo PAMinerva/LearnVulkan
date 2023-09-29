@@ -17,9 +17,9 @@ layout(line_strip, max_vertices = 2) out;
 
 layout (location = 0) in vec4 inPos[];
 
-// gl_Position and other built-in variables are provided through the following built-in structure,
-// which means you don't need to define the following structure to use gl_in as arrays to access
-// the built-in variables available to the geometry shader.
+// gl_Position and other built-in variables are provided through the following built-in structures,
+// which means you don't need to define the following structures to access the built-in variables available to the TSC.
+// Observe that gl_in is an array but the output block is not, as the geometry shader emits primitives vertex by vertex.
 //
 // in gl_PerVertex
 // {
@@ -27,6 +27,13 @@ layout (location = 0) in vec4 inPos[];
 //   float gl_PointSize;
 //   float gl_ClipDistance[];
 // } gl_in[];
+//
+// out gl_PerVertex
+// {
+//   vec4 gl_Position;
+//   float gl_PointSize;
+//   float gl_ClipDistance[];
+// };
 
 
 void main()
