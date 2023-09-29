@@ -17,6 +17,18 @@ layout(line_strip, max_vertices = 2) out;
 
 layout (location = 0) in vec4 inPos[];
 
+// gl_Position and other built-in variables are provided through the following built-in structure,
+// which means you don't need to define the following structure to use gl_in as arrays to access
+// the built-in variables available to the geometry shader.
+//
+// in gl_PerVertex
+// {
+//   vec4 gl_Position;
+//   float gl_PointSize;
+//   float gl_ClipDistance[];
+// } gl_in[];
+
+
 void main()
 {
     // Get the vertex local positions of the input triangle
