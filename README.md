@@ -94,7 +94,7 @@ As you can see, some tutorials are almost comparable to book chapters. It takes 
   <!-- <td> </td>  -->
  </tr>
   <tr>
-  <td>02.E - Tessellation (WIP)</td>
+  <td><a href="https://github.com/PAMinerva/LearnVulkan/tree/master/samples/02E-VkTessellation">02.E - Tessellation</a></td>
   <!-- <td> </td>  -->
  </tr>
  <tr>
