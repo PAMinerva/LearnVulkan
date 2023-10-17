@@ -44,7 +44,7 @@ void main()
 {
     vec4 basisU, basisV;
     BernsteinBasis(gl_TessCoord.x, basisU);
-	BernsteinBasis(gl_TessCoord.y, basisV);
+    BernsteinBasis(gl_TessCoord.y, basisV);
 
     vec3 pos = basisU.x * (basisV.x * inPos[0]  + basisV.y * inPos[1]  + basisV.z * inPos[2]  + basisV.w * inPos[3] );
     pos += basisU.y * (basisV.x * inPos[4] + basisV.y * inPos[5] + basisV.z * inPos[6] + basisV.w * inPos[7] );
