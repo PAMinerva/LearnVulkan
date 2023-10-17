@@ -36,7 +36,6 @@ layout(std140, set = 0, binding = 1) uniform dynbuf {
 void BernsteinBasis(in float t, out vec4 basis)
 {
     float invT = 1.0f - t;
-
     basis = vec4(invT * invT * invT, 3.0 * t * invT * invT, 3.0 * t * t * invT, t * t * t);
 }
 
