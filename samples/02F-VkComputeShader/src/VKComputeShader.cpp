@@ -8,8 +8,8 @@
 #include "glm/ext/scalar_constants.hpp"
 
 #define MESH_QUAD "MeshQuad"
-#define DESC_SET_PRE_COMPILE "DescSetPreCompute"
-#define DESC_SET_POST_COMPILE "DescSetPostCompute"
+#define DESC_SET_PRE_COMPUTE "DescSetPreCompute"
+#define DESC_SET_POST_COMPUTE "DescSetPostCompute"
 #define DESC_SET_COMPUTE "DescSetCompute"
 #define PIPELINE_RENDER "PipelineRender"
 #define PIPELINE_LUMINANCE "PipelineLuminance"
@@ -886,11 +886,11 @@ void VKComputeShader::AllocateDescriptorSets()
     std::vector<VkDescriptorSetLayout> DescriptorSetLayouts(MAX_FRAME_LAG, m_sampleParams.DescriptorSetLayout);
     allocInfo.pSetLayouts = DescriptorSetLayouts.data();
 
-    m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPILE].resize(MAX_FRAME_LAG);
-    m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPILE].resize(MAX_FRAME_LAG);
+    m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPUTE].resize(MAX_FRAME_LAG);
+    m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPUTE].resize(MAX_FRAME_LAG);
 
-    VK_CHECK_RESULT(vkAllocateDescriptorSets(m_vulkanParams.Device, &allocInfo, m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPILE].data()));
-    VK_CHECK_RESULT(vkAllocateDescriptorSets(m_vulkanParams.Device, &allocInfo, m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPILE].data()));
+    VK_CHECK_RESULT(vkAllocateDescriptorSets(m_vulkanParams.Device, &allocInfo, m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPUTE].data()));
+    VK_CHECK_RESULT(vkAllocateDescriptorSets(m_vulkanParams.Device, &allocInfo, m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPUTE].data()));
 
     //
     // Write the descriptors updating the corresponding descriptor sets.
@@ -908,7 +908,7 @@ void VKComputeShader::AllocateDescriptorSets()
         // We need to pass the descriptor set where it is store and 
         // the binding point associated with the descriptor in the descriptor set.
         writeDescriptorSet[0].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writeDescriptorSet[0].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPILE][i];
+        writeDescriptorSet[0].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPUTE][i];
         writeDescriptorSet[0].descriptorCount = 1;
         writeDescriptorSet[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
         writeDescriptorSet[0].pBufferInfo = &m_sampleParams.FrameRes.HostVisibleBuffers[i].Descriptor;
@@ -916,7 +916,7 @@ void VKComputeShader::AllocateDescriptorSets()
 
         // Write the descriptor of the dynamic uniform buffer.
         writeDescriptorSet[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writeDescriptorSet[1].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPILE][i];
+        writeDescriptorSet[1].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPUTE][i];
         writeDescriptorSet[1].descriptorCount = 1;
         writeDescriptorSet[1].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC;
         writeDescriptorSet[1].pBufferInfo = &m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Descriptor;
@@ -924,7 +924,7 @@ void VKComputeShader::AllocateDescriptorSets()
 
         // Write the descriptor of the combined image sampler.
         writeDescriptorSet[2].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writeDescriptorSet[2].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPILE][i];
+        writeDescriptorSet[2].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPUTE][i];
         writeDescriptorSet[2].descriptorCount = 1;
         writeDescriptorSet[2].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
         writeDescriptorSet[2].pImageInfo = &m_inputTexture.TextureImage.Descriptor;
@@ -942,7 +942,7 @@ void VKComputeShader::AllocateDescriptorSets()
         // We need to pass the descriptor set where it is store and 
         // the binding point associated with the descriptor in the descriptor set.
         writeDescriptorSet[0].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writeDescriptorSet[0].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPILE][i];
+        writeDescriptorSet[0].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPUTE][i];
         writeDescriptorSet[0].descriptorCount = 1;
         writeDescriptorSet[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
         writeDescriptorSet[0].pBufferInfo = &m_sampleParams.FrameRes.HostVisibleBuffers[i].Descriptor;
@@ -950,7 +950,7 @@ void VKComputeShader::AllocateDescriptorSets()
 
         // Write the descriptor of the dynamic uniform buffer.
         writeDescriptorSet[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writeDescriptorSet[1].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPILE][i];
+        writeDescriptorSet[1].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPUTE][i];
         writeDescriptorSet[1].descriptorCount = 1;
         writeDescriptorSet[1].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC;
         writeDescriptorSet[1].pBufferInfo = &m_sampleParams.FrameRes.HostVisibleDynamicBuffers[i].Descriptor;
@@ -958,7 +958,7 @@ void VKComputeShader::AllocateDescriptorSets()
 
         // Write the descriptor of the combined image sampler.
         writeDescriptorSet[2].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writeDescriptorSet[2].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPILE][i];
+        writeDescriptorSet[2].dstSet = m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPUTE][i];
         writeDescriptorSet[2].descriptorCount = 1;
         writeDescriptorSet[2].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
         writeDescriptorSet[2].pImageInfo = &m_outputTextures[i].TextureImage.Descriptor;
@@ -1480,7 +1480,7 @@ void VKComputeShader::PopulateCommandBuffer(uint32_t currentImageIndex)
                             VK_PIPELINE_BIND_POINT_GRAPHICS, 
                             m_sampleParams.PipelineLayout, 
                             0, 1, 
-                            &m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPILE][m_frameIndex], 
+                            &m_sampleParams.FrameRes.DescriptorSets[DESC_SET_PRE_COMPUTE][m_frameIndex], 
                             1, &dynamicOffset);
 
     // Draw the quad where the input texture will be mapped
@@ -1495,7 +1495,7 @@ void VKComputeShader::PopulateCommandBuffer(uint32_t currentImageIndex)
                             VK_PIPELINE_BIND_POINT_GRAPHICS, 
                             m_sampleParams.PipelineLayout, 
                             0, 1, 
-                            &m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPILE][m_frameIndex], 
+                            &m_sampleParams.FrameRes.DescriptorSets[DESC_SET_POST_COMPUTE][m_frameIndex], 
                             1, &dynamicOffset);
 
     // Shift viewport rectangle to select the right part of the render target
