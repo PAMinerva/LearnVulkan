@@ -318,7 +318,7 @@ void VKComputeShader::CreateVertexBuffer()
     // The indices of the two triangles composing the quad.
     std::vector<uint16_t> indices =
     {
-		0, 1, 2,
+        0, 1, 2,
         0, 2, 3
     };
 
@@ -421,18 +421,18 @@ void VKComputeShader::CreateHostVisibleBuffers()
 void VKComputeShader::CreateHostVisibleDynamicBuffers()
 {
     // Create the dynamic buffer that store the array of world matrices.
-	// Uniform block alignment differs between GPUs.
+    // Uniform block alignment differs between GPUs.
 
-	// Calculate required alignment based on minimum device offset alignment
-	size_t minUBOAlignment = m_deviceProperties.limits.minUniformBufferOffsetAlignment;
-	m_dynamicUBOAlignment = sizeof(MeshInfo);
-	if (minUBOAlignment > 0)
-		m_dynamicUBOAlignment = (m_dynamicUBOAlignment + minUBOAlignment - 1) & ~(minUBOAlignment - 1);
+    // Calculate required alignment based on minimum device offset alignment
+    size_t minUBOAlignment = m_deviceProperties.limits.minUniformBufferOffsetAlignment;
+    m_dynamicUBOAlignment = sizeof(MeshInfo);
+    if (minUBOAlignment > 0)
+        m_dynamicUBOAlignment = (m_dynamicUBOAlignment + minUBOAlignment - 1) & ~(minUBOAlignment - 1);
     
-	size_t dynBufferSize = m_numDrawCalls * m_dynamicUBOAlignment;
+    size_t dynBufferSize = m_numDrawCalls * m_dynamicUBOAlignment;
 
     dynUBufVS.meshInfo = (MeshInfo*)AlignedAlloc(dynBufferSize, m_dynamicUBOAlignment);
-	assert(dynUBufVS.meshInfo);
+    assert(dynUBufVS.meshInfo);
 
     // Used to request an allocation of a specific size from a certain memory type.
     VkMemoryAllocateInfo memAlloc = {};
@@ -674,7 +674,7 @@ void VKComputeShader::CreateOutputTextures()
     const VkFormat tex_format = VK_FORMAT_R8G8B8A8_UNORM;
     VkFormatProperties props;
 
-	// Get device properties for the R8G8B8A8_UNORM format
+    // Get device properties for the R8G8B8A8_UNORM format
     vkGetPhysicalDeviceFormatProperties(m_vulkanParams.PhysicalDevice, tex_format, &props);
 
     // Check if the device can execute storage image operations from R8G8B8A8_UNORM textures in local device memory
@@ -1187,7 +1187,7 @@ void VKComputeShader::PrepareCompute()
     m_vulkanParams.ComputeQueue.FamilyIndex = m_vulkanParams.GraphicsQueue.FamilyIndex;
 
     // Get a compute queue from the device
-	vkGetDeviceQueue(m_vulkanParams.Device, m_vulkanParams.ComputeQueue.FamilyIndex, 0, &m_vulkanParams.ComputeQueue.Handle);
+    vkGetDeviceQueue(m_vulkanParams.Device, m_vulkanParams.ComputeQueue.FamilyIndex, 0, &m_vulkanParams.ComputeQueue.Handle);
 
     //
     // Create descriptor set layout

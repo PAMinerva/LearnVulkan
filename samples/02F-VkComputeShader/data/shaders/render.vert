@@ -17,7 +17,7 @@ layout(std140, set = 0, binding = 1) uniform dynbuf {
 
 void main() 
 {
-	outTextCoord = inTextCoord;                          // Pass texture coordinates to the next stage
+    outTextCoord = inTextCoord;                          // Pass texture coordinates to the next stage
     vec4 worldPos = dynBuf.World * vec4(inPos, 1.0);     // Local to World
     vec4 viewPos = uBuf.View * worldPos;                 // World to View
     gl_Position = uBuf.Projection * viewPos;             // View to Clip
