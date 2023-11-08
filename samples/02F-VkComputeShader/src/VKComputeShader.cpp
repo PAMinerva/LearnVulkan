@@ -33,7 +33,7 @@ m_dynamicUBOAlignment(0)
     uBufVS.viewMatrix = glm::lookAtLH(c_pos, c_at, c_down);
 
     // Initialize the projection matrix by setting the frustum information
-    // Divide aspect ratio by two to match viewport rectangle
+    // Divide width of aspect ratio by two to match viewport rectangle
     uBufVS.projectionMatrix = glm::perspectiveLH(glm::quarter_pi<float>(), (float)width*0.5f/height, 0.01f, 100.0f);
 }
 
