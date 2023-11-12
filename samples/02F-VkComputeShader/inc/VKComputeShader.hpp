@@ -80,7 +80,7 @@ private:
     // Allow the specification of different world matrices for different objects by offsetting
     // into the same buffer.
     struct MeshInfo{
-        glm::mat4 worldMatrix;        // pointer to an array of world matrices
+        glm::mat4 worldMatrix;
     };
 
     struct {

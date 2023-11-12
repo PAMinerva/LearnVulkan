@@ -76,7 +76,7 @@ private:
     };
 
     struct {
-        MeshInfo *meshInfo;        // pointer to an array of mesh info
+        MeshInfo *meshInfo;
     } dynUBufVS;
     
     // Vertex layout used in this sample
