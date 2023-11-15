@@ -1,0 +1,42 @@
+#version 450
+
+struct Particle {
+    vec3 position;
+    // pad_1
+    vec2 size;
+    float speed;
+    // pad_2
+};
+
+layout(std140, set = 0, binding = 0) uniform bufUniform {
+    mat4 viewMatrix;
+    mat4 projMatrix;
+    vec3 cameraPos;
+    float deltaTime;
+} uBuf;
+
+layout(std140, set = 0, binding = 2) readonly buffer bufStorageIn {
+   Particle particlesIn[ ];
+};
+
+layout(std140, set = 0, binding = 3) buffer bufStorageOut {
+   Particle particlesOut[ ];
+};
+
+layout (local_size_x = 81, local_size_y = 1, local_size_z = 1) in;
+
+void main() 
+{
+    uint index = gl_GlobalInvocationID.x;  
+
+    particlesOut[index] = particlesIn[index]; // output particle is the same as the input particle but ...
+
+    // ... decrease its height over time based on its speed
+    particlesOut[index].position.z -= (particlesOut[index].speed * uBuf.deltaTime);
+    
+    // Reset the height of the particle at some point
+    if (particlesOut[index].position.z < -50.0f)
+    {
+        particlesOut[index].position.z = 50.0f;
+    }
+}
