@@ -21,6 +21,6 @@ echo Compiling shader...
 
 echo Building project...
 
-g++ -g src/*.cpp -o 01H-VkHelloLighting.out $includes $defines $links
+g++ -g src/*.cpp -o 01K-VkHelloPushSpecConstants.out $includes $defines $links
 
 rm -f *.o
